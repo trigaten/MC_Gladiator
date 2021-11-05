@@ -13,6 +13,10 @@ Navigate to `minerl/minerl/herobraine/env_specs`
 
 Make a copy of `treechop_specs.py` and rename it to `treechop_specs2.py`
 
+Open `treechop_specs2.py` and change the class name (Line 121) to Treechop2. 
+
+Change the kwargs['name'] line (line 124) to MineRLTreechop2-v0
+
 
 ## Model
 

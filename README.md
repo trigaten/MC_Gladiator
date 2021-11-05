@@ -29,6 +29,24 @@ Add `MINERL_TREECHOP2_V0` to the comp_envs array (around line 51)
 
 Also add it to the BASIC_ENV_SPECS array (around line 123)
 
+### Using our new environment
+
+In the Notebook, put this code
+`import gym
+from minerl.herobraine.env_specs.treechop_specs2 import Treechop2
+x = Treechop2()
+gym.envs.register(
+     id='MineRLTreeChop2-v0',
+     entry_point='minerl.herobraine.env_specs.treechop_specs2.py',
+     max_episode_steps=1000,
+)
+ENV_SPEC_MAPPINGS = {}
+# x.register()
+ENV_SPEC_MAPPINGS[x.name] = x
+env = gym.make(x.name)
+
+obs = env.reset()`
+
 ## Model
 
 We will be using a multi headed model with a CNN+GRU+FC base and two FC heads.

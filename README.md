@@ -9,7 +9,7 @@ Clone MineRL
 
 Make a new Jupyter Notebook inside of the cloned repo
 
-### Create a copy of the environment
+### Copy a default environment
 
 Navigate to `minerl/minerl/herobraine/env_specs`
 

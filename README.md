@@ -32,7 +32,7 @@ Also add it to the BASIC_ENV_SPECS array (around line 123)
 ### Using our new environment
 
 In the Notebook, put this code
-`import gym
+```import gym
 from minerl.herobraine.env_specs.treechop_specs2 import Treechop2
 x = Treechop2()
 gym.envs.register(
@@ -45,7 +45,7 @@ ENV_SPEC_MAPPINGS = {}
 ENV_SPEC_MAPPINGS[x.name] = x
 env = gym.make(x.name)
 
-obs = env.reset()`
+obs = env.reset()```
 
 ## Model
 

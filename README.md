@@ -36,14 +36,7 @@ In the Notebook, put this code
 import gym
 from minerl.herobraine.env_specs.treechop_specs2 import Treechop2
 x = Treechop2()
-gym.envs.register(
-     id='MineRLTreeChop2-v0',
-     entry_point='minerl.herobraine.env_specs.treechop_specs2.py',
-     max_episode_steps=1000,
-)
-ENV_SPEC_MAPPINGS = {}
-# x.register()
-ENV_SPEC_MAPPINGS[x.name] = x
+x.register()
 env = gym.make(x.name)
 
 obs = env.reset() 

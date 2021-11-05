@@ -46,6 +46,8 @@ obs = env.reset()
 
 Congratulations, you have just made a custom environment and completed the first step of our environment construction-- creating an agent with an iron sword.
 
+This is likely not the most effective way to make a new environment (Im not sure if all of the steps are needed), so I will try to update this when I find better ways.
+
 ## Model
 
 We will be using a multi headed model with a CNN+GRU+FC base and two FC heads.

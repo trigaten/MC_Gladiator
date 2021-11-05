@@ -1,5 +1,5 @@
 # GLADIATOR-Project
-Training a superhuman sword fighting agent with Reinforcement Learning and Project Malmo
+Training a superhuman sword fighting agent with Reinforcement Learning and MineRL
 
 ## How to make a custom environment (by copying a preexisting one)
 

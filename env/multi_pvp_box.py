@@ -1,14 +1,13 @@
-from minerl.env.malmo import InstanceManager
-from minerl.herobraine.env_specs.treechop_specs import Treechop
+"""
 
-import gym
-import minerl  # noqa
+Adapted from https://github.com/minerllabs/minerl/blob/dev/tests/multiagent_test.py
+"""
+from minerl.env.malmo import InstanceManager
 import argparse
-import time
-import sys
-# from minerl.tests.pvpbox_specs import PvpBox
 from pvpbox_specs import PvpBox
 
+__author__ = "Sander Schulhoff"
+__email__ = "sanderschulhoff@gmail.com"
 
 class PvpBoxMultiAgent(PvpBox):
     def create_server_quit_producers(self):

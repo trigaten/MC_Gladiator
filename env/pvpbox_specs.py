@@ -1,17 +1,20 @@
-# Copyright (c) 2020 All Rights Reserved
-# Author: William H. Guss, Brandon Houghton
+"""
+
+Adapted from https://github.com/minerllabs/minerl/blob/dev/minerl/herobraine/env_specs/treechop_specs.py
+"""
 
 from minerl.herobraine.env_specs.simple_embodiment import SimpleEmbodimentEnvSpec
 from minerl.herobraine.hero.mc import MS_PER_STEP, STEPS_PER_MS
 from minerl.herobraine.hero.handler import Handler
 from typing import List
 
-import minerl.herobraine
 import minerl.herobraine.hero.handlers as handlers
-from minerl.herobraine.env_spec import EnvSpec
+
+__author__ = "Sander Schulhoff"
+__email__ = "sanderschulhoff@gmail.com"
 
 PVPBOX_DOC = """
-In pvp box, two agents fight in a boxed in area
+In pvp box, two agents fight in a boxed-in area
 """
 
 PVPBOX_LENGTH = 8000

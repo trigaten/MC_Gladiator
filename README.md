@@ -3,6 +3,8 @@ Training a superhuman sword fighting agent with Reinforcement Learning and MineR
 
 ## How to make a custom environment (by copying a preexisting one)
 
+## I dont recommend you use this tutorial any more. I found a better way :)
+
 Clone MineRL
 
 `git clone https://github.com/minerllabs/minerl.git`

@@ -36,30 +36,32 @@ class PvpBox(SimpleEmbodimentEnvSpec):
         return [
             handlers.SimpleInventoryAgentStart([
                 dict(type="iron_sword", quantity=1)
-            ])
+            ]),
+             handlers.AgentStartPlacement(0, 5, 0, 0, 0)
         ]
 
+   
+    def create_agent_handlers(self) -> List[Handler]:
+        return []
+    
     # make it so agent receives life stats data in addition
     # to the image data it receives at each time step
     # life stats data will be used for calculating +/- 
     # reward agent gets from doing/taking damage
-    def create_agent_handlers(self) -> List[Handler]:
-        return [handlers.ObservationFromLifeStats()]
+    def create_observables(self) -> List[Handler]:
+        return super().create_observables() + [
+            handlers.ObservationFromLifeStats()
+        ]
 
     # make the agent spawn on a super flat world
     def create_server_world_generators(self) -> List[Handler]:
         return [
-            handlers.FlatWorldGenerator(generatorString="2;7,2x3,2;1;")
-            # handlers.DrawingDecorator('<DrawSphere x="-50" y="20" z="0" radius="10" type="obsidian"/>')
-                        # 95 227 186
-
-            # handlers.DrawingDecorator('<DrawSphere x="0" y="10" z="0" radius="10" type="obsidian"/>'),
-            # handlers.DrawingDecorator('<DrawSphere x="-50" y="10" z="0" radius="10" type="obsidian"/>'),
-            # handlers.DrawingDecorator('<DrawSphere x="-50" y="10" z="-50" radius="10" type="obsidian"/>'),
-            # handlers.DrawingDecorator('<DrawSphere x="50" y="10" z="-50" radius="10" type="obsidian"/>'),
-            # handlers.DrawingDecorator('<DrawSphere x="50" y="10" z="50" radius="10" type="obsidian"/>')
-
-        ]
+            handlers.FlatWorldGenerator(generatorString="2;7,2x3,2;1;"),
+            handlers.DrawingDecorator("""<DrawCuboid x1="3" y1="4" z1="3" x2="3" y2="6" z2="-3" type="gold_block"/>
+            <DrawCuboid x1="3" y1="4" z1="3" x2="-3" y2="6" z2="3" type="gold_block"/>
+            <DrawCuboid x1="-3" y1="4" z1="-3" x2="3" y2="6" z2="-3" type="gold_block"/>
+            <DrawCuboid x1="-3" y1="4" z1="-3" x2="-3" y2="6" z2="3" type="gold_block"/>"""),
+          ]
 
     def create_server_quit_producers(self) -> List[Handler]:
         return [

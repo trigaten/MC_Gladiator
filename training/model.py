@@ -1,58 +1,49 @@
 """Contains the pytorch neural network"""
+    
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
 class gnet(nn.Module):
-  def __init__(self, initbal=0):
-    super(gnet, self).__init__()
-    self.balance = initbal
-    self.conv1 = nn.Conv2d(1, 600, 3)
-    self.conv2 = nn.Conv2d(600, 1200, 2)
-    self.conv3 = nn.Conv2d(1200, 2100, 2)
-      # GRU layer
-    self.gru = nn.GRU(2100, 1200, 2)
-      # Linear  
-    self.fc1 = nn.Linear(1200, 900) 
-    self.fc2 = nn.Linear(900, 600)
-      # Value head
-    self.fc3 = nn.Linear(600, 300)
-    self.fc4 = nn.Linear(300, 1)
-      # Mean head
-    self.fc5 = nn.Linear(600, 300)
-    self.fc6 = nn.Linear(300, 7)
-      # Varinace head
-    self.fc7 = nn.Linear(600, 300)
-    self.fc8 = nn.Linear(300, 7)
+  def __init__(self):
+        super().__init__()
 
-  def num_flat_features(self, x):
-      size = x.size()[1:]
-      num_features = 1
-      for s in size:
-        num_features *= s
-      return num_features
+        self.CNN = nn.Sequential(nn.Conv2d(1, 32, 3, stride=3), nn.MaxPool2d(3),
+            nn.Conv2d(32, 64, 2, stride=2), nn.MaxPool2d(2),
+            nn.Conv2d(64, 1200, 2, stride=2), nn.MaxPool2d(2),
+        )
+
+        self.gru = nn.GRU(1200, 1200, 2)
+        
+        self.Linear = nn.Sequential(nn.Linear(1200, 900, bias=True), 
+                                    nn.Linear(900, 600, bias=True))
+        # Value
+        self.value = nn.Sequential(nn.Linear(600, 300, bias=False),
+                                     nn.Linear(300, 1, bias=False))
+        # Mean
+        self.mean = nn.Sequential(nn.Linear(600, 300, bias=False), nn.Sigmoid(),
+                                    nn.Linear(300, 7, bias=False))
+        # Varinace
+        self.variance = nn.Sequential(nn.Linear(600, 300, bias=False), nn.Sigmoid(), 
+                                    nn.Linear(300, 7, bias=False))
 
   def forward(self, x):
-    x = F.max_pool2d(F.relu(self.conv1(x)), (3,3))
-    x = F.max_pool2d(F.relu(self.conv2(x)), (2,2))
-    x = F.max_pool2d(F.relu(self.conv3(x)), (2,2))
-
-    x = x.view(-1, self.num_flat_features(x))
-    #x = torch.flatten(x, 1)
-    x = x.unsqueeze(-2)
-    h_n = torch.zeros(2, x.size(0), 1200)
+        # CNN output
+        CNN_out = self.CNN(x)
+        # flatten
+        flat = torch.flatten(CNN_out, 1)
+        flat = torch.unsqueeze(flat, 0)
+        # pass 0s as hidden state
+        h_0 = torch.zeros(2, 1, 1200)
         # gru output
-    gru_out, _ = self.gru(x, h_n)
-    x = F.relu(self.fc1(gru_out))         
-    x = F.relu(self.fc2(x))          
+        gru_out, h_n= self.gru(flat, (h_0))
+        # linear layer output
+        lin_out = self.Linear(gru_out)                           
         # Value output
-    Value = F.relu(self.fc3(x))
-    Value = self.fc4(Value)
+        Value = self.value(lin_out)
         # Mean output
-    Mean = F.relu(self.fc5(x))
-    Mean = F.relu(self.fc6(Mean))
+        Mean = self.mean(lin_out)                         
         # Variance output
-    Variance = F.relu(self.fc7(x))
-    Variance = F.relu(self.fc8(Variance)) 
-                  
-    return Value, Mean, Variance
+        Variance = self.variance(lin_out)
+                                     
+        return Value, Mean, Variance

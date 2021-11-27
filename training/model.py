@@ -13,7 +13,7 @@ class PPO_net(nn.Module):
             nn.Conv2d(64, 1200, 2, stride=2), nn.MaxPool2d(2),
         )
 
-        self.gru = nn.GRU(1200, 1200, 2)
+        self.gru = nn.GRU(1200, 1200, 1)
         
         self.Linear = nn.Sequential(nn.Linear(1200, 900, bias=True), 
                                     nn.Linear(900, 600, bias=True))
@@ -34,7 +34,7 @@ class PPO_net(nn.Module):
         flat = torch.flatten(CNN_out, 1)
         flat = torch.unsqueeze(flat, 0)
         # pass 0s as hidden state
-        h_0 = torch.zeros(2, 1, 1200)
+        h_0 = torch.zeros(1, 1, 1200)
         # gru output
         gru_out, h_n= self.gru(flat, (h_0))
         # linear layer output

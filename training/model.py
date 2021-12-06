@@ -20,11 +20,8 @@ class PPO_net(nn.Module):
         # Value
         self.value = nn.Sequential(nn.Linear(600, 300, bias=False),
                                      nn.Linear(300, 1, bias=False))
-        # Mean
-        self.mean = nn.Sequential(nn.Linear(600, 300, bias=False), nn.Sigmoid(),
-                                    nn.Linear(300, 7, bias=False))
-        # Varinace
-        self.variance = nn.Sequential(nn.Linear(600, 300, bias=False), nn.Sigmoid(), 
+        # Action
+        self.action = nn.Sequential(nn.Linear(600, 300, bias=False), nn.Sigmoid(),
                                     nn.Linear(300, 7, bias=False))
 
   def forward(self, x):
@@ -41,9 +38,7 @@ class PPO_net(nn.Module):
         lin_out = self.Linear(gru_out)                           
         # Value output
         Value = self.value(lin_out)
-        # Mean output
-        Mean = self.mean(lin_out)                         
-        # Variance output
-        Variance = self.variance(lin_out)
-                                     
-        return Value, Mean, Variance
+        # Action output
+        Action = self.action(lin_out)                         
+                        
+        return Value, Action

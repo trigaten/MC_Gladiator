@@ -1,6 +1,7 @@
 # GLADIATOR-Project
 Training a superhuman sword fighting agent with Reinforcement Learning and MineRL
 
+<<<<<<< HEAD
 ## How to make a custom environment (by copying a preexisting one)
 
 ## I dont recommend you use this tutorial any more. I found a better way :)
@@ -57,3 +58,5 @@ We will be using a multi headed model with a CNN+GRU+FC base and two FC heads.
 
 ### https://adoptium.net/archive.html?variant=openjdk8&jvmVariant=hotspot
 "# GLADIATOR" 
+=======
+>>>>>>> 92783df6bf174aed3c5656749f609b6d3994eeb4

@@ -24,6 +24,21 @@ class biomeBox(SimpleEmbodimentEnvSpec):
         super().__init__(*args,
                         max_episode_steps=BIOMEBOX_LENGTH, reward_threshold=100.0,
                         **kwargs)
+    
+    def create_rewardables(self) -> List[Handler]:
+        return []
+
+    # make agent spawn with iron sword
+    def create_agent_start(self) -> List[Handler]:
+        return [
+            handlers.SimpleInventoryAgentStart([
+                dict(type="iron_sword", quantity=1)
+            ]),
+             handlers.AgentStartPlacement(0, 5, 0, 0, 0)
+        ]
+   
+    def create_agent_handlers(self) -> List[Handler]:
+        return []
 
     #Creates a default world with no preset gerenation (random world) 
     # with a 5x5 open space enclosed by bedrock stacked from y=0 to y=50.
@@ -40,3 +55,31 @@ class biomeBox(SimpleEmbodimentEnvSpec):
         """)
         ]
 
+    def create_server_quit_producers(self) -> List[Handler]:
+        return [
+            handlers.ServerQuitFromTimeUp(
+                (BIOMEBOX_LENGTH * MS_PER_STEP)),
+            handlers.ServerQuitWhenAnyAgentFinishes()
+        ]
+
+    def create_server_decorators(self) -> List[Handler]:
+        return []
+
+    def create_server_initial_conditions(self) -> List[Handler]:
+        return [
+            handlers.TimeInitialCondition(
+                allow_passage_of_time=False
+            ),
+            handlers.SpawningInitialCondition(
+                allow_spawning=True
+            )
+        ]
+
+    def determine_success_from_rewards(self, rewards: list) -> bool:
+        return sum(rewards) >= self.reward_threshold
+
+    def is_from_folder(self, folder: str) -> bool:
+        return folder == 'biomeBox' #change 
+
+    def get_docstring(self):
+        return BIOMEBOX_DOC

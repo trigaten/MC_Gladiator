@@ -6,20 +6,25 @@ import torch.nn.functional as F
 from torch.nn.modules.activation import Softmax
 
 class Discrete_PPO_net(nn.Module):
+  """This network is composed of a CNN which feeds into both a Linear
+  layer and a GRU. The outputs from these layers are concatenated then fed 
+  through two linear heads to compute action probabilities and values. The action
+  logits are fed through the softmax to compute the actual probabilities.
+  """
   def __init__(self, num_actions):
         super().__init__()
         self.sm = nn.Softmax(dim=2)
         self.num_actions = num_actions
 
-        # similar to alex/lenet
+        # maintain spatial resolution with padding
         self.CNN = nn.Sequential(
             nn.Conv2d(3, 32, 7, padding=3), 
             nn.ReLU(),
             nn.MaxPool2d(4),
-            nn.Conv2d(32, 64, 3, padding = 1), 
+            nn.Conv2d(32, 64, 3, padding=1), 
             nn.ReLU(),
             nn.MaxPool2d(2),
-            nn.Conv2d(64, 128, 3, padding = 1), 
+            nn.Conv2d(64, 128, 3, padding=1), 
             nn.ReLU(),
             nn.MaxPool2d(2)
             # here 128 channels, 4x4 = 2048 units
@@ -35,7 +40,7 @@ class Discrete_PPO_net(nn.Module):
         # Action
         self.action = nn.Sequential(
           nn.Linear(2048, 512, bias=False), 
-          nn.Sigmoid(),
+          nn.ReLU(),
           nn.Linear(512, num_actions, bias=False),
         )
 

@@ -1,3 +1,8 @@
+"""Contains the training loop/routine"""
+
+__author__ = "Sander Schulhoff"
+__email__ = "sanderschulhoff@gmail.com"
+
 from minerl.env.malmo import InstanceManager
 import sys
 sys.path.append("..")
@@ -24,17 +29,23 @@ agent_actions = {"attack":1, "left":1, "right":1}
 num_actions = len(agent_actions)
 env_spec = MultiPvpBox(agent_count=2)
 
+
+
 # IF you want to use existing instances use this!
 # instances = [
 #     InstanceManager.add_existing_instance(9001),
 #     InstanceManager.add_existing_instance(9002)]
 instances = []
 
+pool = InstanceManager._instance_pool
+
+# if len(pool) >= 2:
+
 env = OneVersusOneWrapper(env_spec.make(instances=instances))
 opponent = Agent(Discrete_PPO_net(num_actions), False)
 env = OpponentStepWrapper(env, opponent, agent_actions)
 
-hero = Agent(Discrete_PPO_net(num_actions), False)
+hero = Agent(Discrete_PPO_net(num_actions), True)
 
 optimizer = optim.Adam(hero.net.parameters(), lr=1e-4)
 loss_func = torch.nn.CrossEntropyLoss()

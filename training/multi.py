@@ -1,51 +1,65 @@
 from minerl.env.malmo import InstanceManager
 import sys
 sys.path.append("..")
-from env.pvpbox_specs import PvpBox
-import gym
-import minerl  # noqa
-import argparse
-import time
-from env.OneVersusOneWrapper import OneVersusOneWrapper
 
-class TreechopMultiAgentNoQuit(PvpBox):
+from env.pvpbox_specs import PvpBox
+from env.wrappers import OneVersusOneWrapper
+from env.wrappers import OpponentStepWrapper
+
+from model import Discrete_PPO_net
+from Agent import Agent
+
+import torch
+import torch.optim as optim
+import numpy as np
+
+class MultiPvpBox(PvpBox):
     # This version of treechop doesn't terminate the episode 
     # if the other agent quits/dies (or gets the max reward)
     # def create_server_quit_producers(self):
     #     return []
     pass
 
-actions = ["attack", "turn_left", "turn_right"]    
+agent_actions = {"attack":1, "left":1, "right":1}
+num_actions = len(agent_actions)
+env_spec = MultiPvpBox(agent_count=2)
 
-if __name__ == '__main__':
-    env_spec = TreechopMultiAgentNoQuit(agent_count=2)
+# IF you want to use existing instances use this!
+# instances = [
+#     InstanceManager.add_existing_instance(9001),
+#     InstanceManager.add_existing_instance(9002)]
+instances = []
 
-    # IF you want to use existing instances use this!
-    # instances = [
-    #     InstanceManager.add_existing_instance(9001),
-    #     InstanceManager.add_existing_instance(9002)]
-    instances = []
+env = OneVersusOneWrapper(env_spec.make(instances=instances))
+opponent = Agent(Discrete_PPO_net(num_actions), False)
+env = OpponentStepWrapper(env, opponent, agent_actions)
 
-    env = OneVersusOneWrapper(env_spec.make(instances=instances))
+hero = Agent(Discrete_PPO_net(num_actions), False)
 
-    # iterate desired episodes
-    while True:
-        env.reset()
-        steps = 0
+optimizer = optim.Adam(hero.net.parameters(), lr=1e-4)
+loss_func = torch.nn.CrossEntropyLoss()
 
-        done = False
-        actor_names = env.env.task.agent_names
-        while not done:
-            steps += 1
-            env.render()
+value_batch = []
+action_batch = []
+# iterate desired episodes
+while True:
+    obs = env.reset()
+    values = []
+    actions = []
+    rewards = []
+    steps = 0
 
-            actions = env.env.action_space.no_op()
-            for agent in actions:
-                actions[agent]["forward"] = 1
-                actions[agent]["attack"] = 1
-                actions[agent]["camera"] = [0, 0.1]
+    done = False
+    while not done:
+        steps += 1
+        action, action_distribution, values = hero(obs)
+        # env.render()
+        # actions = env.env.action_space.no_op()
+        # for agent in actions:
+        #     actions[agent]["forward"] = 1
+        #     actions[agent]["attack"] = 1
+        #     actions[agent]["camera"] = [0, 0.1]
 
-            obs, reward, done, info = env.step(actions)
-            print(reward)
+        obs, reward, done, info = env.step(action)
 
 

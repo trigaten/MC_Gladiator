@@ -3,42 +3,75 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torch.nn.modules.activation import Softmax
 
-class PPO_net(nn.Module):
-  def __init__(self):
+class Discrete_PPO_net(nn.Module):
+  def __init__(self, num_actions):
         super().__init__()
+        self.sm = nn.Softmax(dim=2)
+        self.num_actions = num_actions
 
-        self.CNN = nn.Sequential(nn.Conv2d(1, 32, 3, stride=3), nn.MaxPool2d(3),
-            nn.Conv2d(32, 64, 2, stride=2), nn.MaxPool2d(2),
-            nn.Conv2d(64, 1200, 2, stride=2), nn.MaxPool2d(2),
+        # similar to alex/lenet
+        self.CNN = nn.Sequential(
+            nn.Conv2d(3, 32, 7, padding=3), 
+            nn.ReLU(),
+            nn.MaxPool2d(4),
+            nn.Conv2d(32, 64, 3, padding = 1), 
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+            nn.Conv2d(64, 128, 3, padding = 1), 
+            nn.ReLU(),
+            nn.MaxPool2d(2)
+            # here 128 channels, 4x4 = 2048 units
         )
 
-        self.gru = nn.GRU(1200, 1200, 1)
+        self.base_GRU = nn.GRU(128*4*4, 1024)
         
-        self.Linear = nn.Sequential(nn.Linear(1200, 900, bias=True), 
-                                    nn.Linear(900, 600, bias=True))
-        # Value
-        self.value = nn.Sequential(nn.Linear(600, 300, bias=False),
-                                     nn.Linear(300, 1, bias=False))
-        # Action
-        self.action = nn.Sequential(nn.Linear(600, 300, bias=False), nn.Sigmoid(),
-                                    nn.Linear(300, 7, bias=False))
+        self.base_fc = nn.Sequential(
+          nn.Linear(128*4*4, 1024, bias=True), 
+          nn.ReLU()
+        )
 
-  def forward(self, x):
-        # CNN output
-        CNN_out = self.CNN(x)
-        # flatten
-        flat = torch.flatten(CNN_out, 1)
-        flat = torch.unsqueeze(flat, 0)
-        # pass 0s as hidden state
-        h_0 = torch.zeros(1, 1, 1200)
-        # gru output
-        gru_out, h_n= self.gru(flat, (h_0))
-        # linear layer output
-        lin_out = self.Linear(gru_out)                           
-        # Value output
-        Value = self.value(lin_out)
-        # Action output
-        Action = self.action(lin_out)                         
-                        
-        return Value, Action
+        # Action
+        self.action = nn.Sequential(
+          nn.Linear(2048, 512, bias=False), 
+          nn.Sigmoid(),
+          nn.Linear(512, num_actions, bias=False),
+        )
+
+        # Value
+        self.value = nn.Sequential(
+          nn.Linear(2048, 512, bias=False),
+          nn.ReLU(),
+          nn.Linear(512, 1, bias=False),
+        )
+
+  def forward(self, x, gru_hidden=None):
+    """
+    :param x: [N, 1, height, width] pytorch tensor
+    """
+    batch_size = x.shape[0]
+    # CNN output
+    CNN_out = self.CNN(x)
+
+    flat = CNN_out.view((1, batch_size, 2048))
+
+    if gru_hidden != None:
+      GRU_out, h_n = self.base_GRU(flat, gru_hidden)
+    else:
+      GRU_out, h_n = self.base_GRU(flat)
+
+    base_fc_out = self.base_fc(flat)
+
+    # [1,1,2048]
+    base_out = torch.cat((GRU_out, base_fc_out), dim=2)
+              
+    # Action output
+    action = self.action(base_out)
+    action = self.sm(action)
+
+    # Value output
+    value = self.value(base_out)                  
+                    
+    # return action, value, hidden
+    return action, value, h_n

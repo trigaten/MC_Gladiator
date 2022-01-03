@@ -16,7 +16,7 @@ class Agent():
         self.grad = grad
         # need to store last hidden layer since the model uses a GRU
         self.hiddens = None
-        self.num_actions = net.num_actions
+        self.num_actions = net.num_outputs
     
     def __call__(self, states):
         # perform forward pass through network

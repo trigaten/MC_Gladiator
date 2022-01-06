@@ -31,6 +31,7 @@ from environment.dummy_spec import DummyGym
 from environment.dummy_spec import DummyMAGym
 from environment.pvpbox_specs import PvpBox
 from environment.wrappers import *
+
 from Agent import Agent
 
 import pyspiel
@@ -42,7 +43,7 @@ agent_actions = {"attack":1, "left":1, "right":1}
 num_actions = len(agent_actions)
 def env_creator(env_config):
     # return DummyGym()
-    return OneVersusOneWrapper(PvpBox(agent_count=2).make(instances=[]), agent_actions)
+    return OneVersusOneWrapper(SuperviserWrapper(PvpBox(agent_count=2).make(instances=[])), agent_actions)
     # return CartPoleEnv()
     # env = OneVersusOneWrapper(PvpBox(agent_count=2).make(instances=[]))
     # opponent = Agent(Discrete_PPO_net(num_actions), False)
@@ -81,6 +82,7 @@ config = {
 
         "policies_to_train": ["policy_01"]
     },
+    # "ignore_worker_failures": True,
     # Set up a separate evaluation worker set for the
     # `trainer.evaluate()` call after training (see below).
     # "evaluation_num_workers": 1,
@@ -92,7 +94,7 @@ config = {
 
 # Create our RLlib Trainer.
 trainer = PPOTrainer(config=config)
-for i in range(300):
+for i in range(1):
     print(trainer.train())
     # if i % 1 == 0:
     #     trainer.set_weights({

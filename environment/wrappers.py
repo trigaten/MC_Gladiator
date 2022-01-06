@@ -10,9 +10,15 @@ import gym
 import torch
 import numpy as np
 from gym import spaces
+import random
+import time
+# thanks ray...
+from environment.pvpbox_specs import PvpBox
 
 from ray.rllib.env.multi_agent_env import MultiAgentEnv
-
+import threading
+threadLock = threading.Lock()
+reset_counter = 0
 
 class OneVersusOneWrapper(MultiAgentEnv):
     """Wrapper for a 1v1 version of the multiagent pvp gym.
@@ -30,6 +36,7 @@ class OneVersusOneWrapper(MultiAgentEnv):
         self.a0_health = 20
         self.a1_health = 20
         self.steps = 0
+        self.resets = 0
 
     def step(self, actions):
         dual_action = self.env.action_space.noop()
@@ -86,14 +93,14 @@ class OneVersusOneWrapper(MultiAgentEnv):
         return np.flip(np_array,axis=0).transpose(2,0,1)
 
     def reset(self):
-        print("RESETTING")
         obs = self.env.reset()
-        print(obs)
         # to pytorch tensors
         new_obs = {}
         new_obs["agent_0"] = self.__np_transform(obs["agent_0"]["pov"])
         new_obs["agent_1"] = self.__np_transform(obs["agent_1"]["pov"])
-        print("NEW", new_obs)
+        self.resets+=1
+        print("RESETS", self.resets)
+       
         return new_obs
 
 class OpponentStepWrapper(gym.Wrapper):
@@ -138,6 +145,86 @@ class OpponentStepWrapper(gym.Wrapper):
 
     def reset(self):
         """just returns observation from first agent"""
+        if random.rand() > 0.8:
+            raise Exception()
         obs = self.env.reset()
         self.opponent_obs = obs["agent_1"]["pov"]
         return obs["agent_0"]["pov"]
+
+class SuperviserWrapper(gym.Wrapper):
+    """
+    Made by Miffyli
+    Wrapper that reboots the environment if it happens to crash.
+
+    If environment crashes during step, we return the latest
+    observation as a terminal state, and re-init the environment.
+
+    Note: Env should be creatable with gym.make
+    """
+
+    def __init__(self, env):
+        super().__init__(env)
+        self.env = env
+
+        self.env_id = "PvpBox-v0"
+
+        # Keep track of last observation so we have something
+        # valid to give to the agent
+        self.last_obs = None
+
+        self.start_time = time.time()
+
+    def reboot_env(self):
+        """Re-create the environment from zero"""
+        with threadLock:
+            global reset_counter
+            reset_counter += 1
+            print("REBOOT", reset_counter)
+        # See if we can close the environment
+        try:
+            self.env.close()
+        except Exception:
+            print("Couldnt close env, maybe it is already closed?")
+        self.env = PvpBox(agent_count=2).make(instances=[])
+        print("MADE NEW ENV")
+        try:
+            return self.env.reset()
+        except Exception:
+            print("THATS A RESET FAIL")
+
+    def reset(self, **kwargs):
+        try:
+            obs = self.env.reset(**kwargs)
+            self.last_obs = obs
+        except Exception as e:
+            print("[{}, Superviser] Environment crashed with '{}'".format(
+                time.time() - self.start_time, str(e))
+            )
+            # Create something to return
+            obs = self.last_obs
+            reward = 0
+            done = True
+            info = {}
+            # Re-create the environment
+            obs = self.reboot_env()
+        return obs
+
+    def step(self, action):
+        obs, reward, done, info = None, None, None, None
+
+        try:
+            obs, reward, done, info = self.env.step(action)
+            self.last_obs = obs
+        except Exception as e:
+            print("[{}, Superviser] Environment crashed with '{}'".format(
+                time.time() - self.start_time, str(e))
+            )
+            # Create something to return
+            obs = self.last_obs
+            reward = 0
+            done = True
+            info = {}
+            # Re-create the environment
+            self.reboot_env()
+
+        return obs, reward, done, info

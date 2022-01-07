@@ -41,12 +41,12 @@ class OneVersusOneWrapper(MultiAgentEnv):
     def step(self, actions):
         dual_action = self.env.action_space.noop()
         # get the MineRL string action
-        hero_action = list(self.actions)[actions["agent_0"]]
+        hero_action, hero_action_amt = self.actions[actions["agent_0"]]
         # set the action to its value
-        dual_action["agent_0"][hero_action] = self.actions[hero_action]
-        opponent_action = list(self.actions)[actions["agent_1"]]
+        dual_action["agent_0"][hero_action] = hero_action_amt
+        opponent_action, opponent_action_amt = self.actions[actions["agent_1"]]
         # set the action to its value
-        dual_action["agent_1"][opponent_action] = self.actions[opponent_action]
+        dual_action["agent_1"][opponent_action] = opponent_action_amt
         obs, reward, done, info = self.env.step(dual_action)
         # update stored health for both agents
         a0_new_health = obs["agent_0"]["life_stats"]["life"]

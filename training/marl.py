@@ -1,10 +1,12 @@
 # Import the RL algorithm (Trainer) we would like to use.
+import os
 import sys
+sys.path.append(os.getcwd()) 
 
 sys.path.append("..")
-sys.path.append("/Users/sander/Desktop/Gladiator/GLADIATOR-Project/environment")
+sys.path.append("/tmp/GLADIATOR-Project/environment")
 import ray
-ray.init(runtime_env={"working_dir": "/Users/sander/Desktop/Gladiator/GLADIATOR-Project"})
+ray.init(runtime_env={"working_dir": "GLADIATOR-Project"})
 from ray.rllib.agents.ppo import PPOTrainer
 from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
@@ -34,9 +36,9 @@ from environment.wrappers import *
 
 from Agent import Agent
 
-import pyspiel
-from open_spiel.python.rl_environment import Environment
-from ray.rllib.env.wrappers.open_spiel import OpenSpielEnv
+#import pyspiel
+#from open_spiel.python.rl_environment import Environment
+#from ray.rllib.env.wrappers.open_spiel import OpenSpielEnv
 
 
 agent_actions = [("attack", 1), ("left", 1), ("right", 1), ("camera", [0,15]), ("camera", [0,-15])]

@@ -1,0 +1,703 @@
+materialgpu02.umiacs.umd.edu
+2022-01-10 14:24:52,841	INFO services.py:1338 -- View the Ray dashboard at [1m[32mhttp://127.0.0.1:8265[39m[22m
+2022-01-10 14:24:53,149	INFO packaging.py:352 -- Creating a file package for local directory '/fs/clip-scratch/sschulho/GLADIATOR-Project'.
+2022-01-10 14:24:53,170	INFO packaging.py:221 -- Pushing file package 'gcs://_ray_pkg_50ffbb6bda2fc813.zip' (0.15MiB) to Ray cluster...
+2022-01-10 14:24:53,173	INFO packaging.py:224 -- Successfully pushed file package 'gcs://_ray_pkg_50ffbb6bda2fc813.zip'.
+/cliphomes/sschulho/.local/lib/python3.9/site-packages/gym/logger.py:34: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize("%s: %s" % ("WARN", msg % args), "yellow"))
+2022-01-10 14:25:01,119	INFO ppo.py:166 -- In multi-agent mode, policies will be optimized sequentially by the multi-GPU optimizer. Consider setting simple_optimizer=True if this doesn't work for you.
+2022-01-10 14:25:01,119	INFO trainer.py:743 -- Current log_level is WARN. For more information, set 'log_level': 'INFO' / 'DEBUG' or use the -v and -vv flags.
+[2m[36m(RolloutWorker pid=137683)[0m /cliphomes/sschulho/.local/lib/python3.9/site-packages/gym/logger.py:34: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+[2m[36m(RolloutWorker pid=137683)[0m   warnings.warn(colorize("%s: %s" % ("WARN", msg % args), "yellow"))
+[2m[36m(RolloutWorker pid=137684)[0m /cliphomes/sschulho/.local/lib/python3.9/site-packages/gym/logger.py:34: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+[2m[36m(RolloutWorker pid=137684)[0m   warnings.warn(colorize("%s: %s" % ("WARN", msg % args), "yellow"))
+2022-01-10 14:25:06,919	WARNING util.py:57 -- Install gputil for GPU system monitoring.
+[2m[36m(RolloutWorker pid=137683)[0m /cliphomes/sschulho/.local/lib/python3.9/site-packages/gym/logger.py:34: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+[2m[36m(RolloutWorker pid=137683)[0m   warnings.warn(colorize("%s: %s" % ("WARN", msg % args), "yellow"))
+[2m[36m(RolloutWorker pid=137683)[0m /cliphomes/sschulho/.local/lib/python3.9/site-packages/gym/logger.py:34: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+[2m[36m(RolloutWorker pid=137683)[0m   warnings.warn(colorize("%s: %s" % ("WARN", msg % args), "yellow"))
+[2m[36m(RolloutWorker pid=137684)[0m /cliphomes/sschulho/.local/lib/python3.9/site-packages/gym/logger.py:34: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+[2m[36m(RolloutWorker pid=137684)[0m   warnings.warn(colorize("%s: %s" % ("WARN", msg % args), "yellow"))
+[2m[36m(RolloutWorker pid=137684)[0m /cliphomes/sschulho/.local/lib/python3.9/site-packages/gym/logger.py:34: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+[2m[36m(RolloutWorker pid=137684)[0m   warnings.warn(colorize("%s: %s" % ("WARN", msg % args), "yellow"))
+[2m[36m(RolloutWorker pid=137683)[0m /cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/runpy.py:127: RuntimeWarning: 'minerl.utils.process_watcher' found in sys.modules after import of package 'minerl.utils', but prior to execution of 'minerl.utils.process_watcher'; this may result in unpredictable behaviour
+[2m[36m(RolloutWorker pid=137683)[0m   warn(RuntimeWarning(msg))
+[2m[36m(RolloutWorker pid=137683)[0m /cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/runpy.py:127: RuntimeWarning: 'minerl.utils.process_watcher' found in sys.modules after import of package 'minerl.utils', but prior to execution of 'minerl.utils.process_watcher'; this may result in unpredictable behaviour
+[2m[36m(RolloutWorker pid=137683)[0m   warn(RuntimeWarning(msg))
+[2m[36m(RolloutWorker pid=137684)[0m /cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/runpy.py:127: RuntimeWarning: 'minerl.utils.process_watcher' found in sys.modules after import of package 'minerl.utils', but prior to execution of 'minerl.utils.process_watcher'; this may result in unpredictable behaviour
+[2m[36m(RolloutWorker pid=137684)[0m   warn(RuntimeWarning(msg))
+[2m[36m(RolloutWorker pid=137684)[0m /cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/runpy.py:127: RuntimeWarning: 'minerl.utils.process_watcher' found in sys.modules after import of package 'minerl.utils', but prior to execution of 'minerl.utils.process_watcher'; this may result in unpredictable behaviour
+[2m[36m(RolloutWorker pid=137684)[0m   warn(RuntimeWarning(msg))
+[2m[36m(RolloutWorker pid=137683)[0m /cliphomes/sschulho/.local/lib/python3.9/site-packages/gym/logger.py:34: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+[2m[36m(RolloutWorker pid=137683)[0m   warnings.warn(colorize("%s: %s" % ("WARN", msg % args), "yellow"))
+[2m[36m(RolloutWorker pid=137683)[0m /cliphomes/sschulho/.local/lib/python3.9/site-packages/gym/logger.py:34: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+[2m[36m(RolloutWorker pid=137683)[0m   warnings.warn(colorize("%s: %s" % ("WARN", msg % args), "yellow"))
+[2m[36m(RolloutWorker pid=137684)[0m /cliphomes/sschulho/.local/lib/python3.9/site-packages/gym/logger.py:34: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+[2m[36m(RolloutWorker pid=137684)[0m   warnings.warn(colorize("%s: %s" % ("WARN", msg % args), "yellow"))
+[2m[36m(RolloutWorker pid=137684)[0m /cliphomes/sschulho/.local/lib/python3.9/site-packages/gym/logger.py:34: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+[2m[36m(RolloutWorker pid=137684)[0m   warnings.warn(colorize("%s: %s" % ("WARN", msg % args), "yellow"))
+[2m[36m(RolloutWorker pid=137683)[0m /cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/runpy.py:127: RuntimeWarning: 'minerl.utils.process_watcher' found in sys.modules after import of package 'minerl.utils', but prior to execution of 'minerl.utils.process_watcher'; this may result in unpredictable behaviour
+[2m[36m(RolloutWorker pid=137683)[0m   warn(RuntimeWarning(msg))
+[2m[36m(RolloutWorker pid=137684)[0m /cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/runpy.py:127: RuntimeWarning: 'minerl.utils.process_watcher' found in sys.modules after import of package 'minerl.utils', but prior to execution of 'minerl.utils.process_watcher'; this may result in unpredictable behaviour
+[2m[36m(RolloutWorker pid=137684)[0m   warn(RuntimeWarning(msg))
+[2m[36m(RolloutWorker pid=137684)[0m /cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/runpy.py:127: RuntimeWarning: 'minerl.utils.process_watcher' found in sys.modules after import of package 'minerl.utils', but prior to execution of 'minerl.utils.process_watcher'; this may result in unpredictable behaviour
+[2m[36m(RolloutWorker pid=137684)[0m   warn(RuntimeWarning(msg))
+[2m[36m(RolloutWorker pid=137683)[0m /cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/runpy.py:127: RuntimeWarning: 'minerl.utils.process_watcher' found in sys.modules after import of package 'minerl.utils', but prior to execution of 'minerl.utils.process_watcher'; this may result in unpredictable behaviour
+[2m[36m(RolloutWorker pid=137683)[0m   warn(RuntimeWarning(msg))
+[2m[36m(RolloutWorker pid=137683)[0m [68.8417615890503, Superviser] Environment crashed with '/tmp/tmp5btbxooo/Minecraft
+[2m[36m(RolloutWorker pid=137683)[0m # Configuration file
+[2m[36m(RolloutWorker pid=137683)[0m # Autogenerated from command-line options
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m malmoports {
+[2m[36m(RolloutWorker pid=137683)[0m   I:portOverride=12058
+[2m[36m(RolloutWorker pid=137683)[0m }
+[2m[36m(RolloutWorker pid=137683)[0m malmoscore {
+[2m[36m(RolloutWorker pid=137683)[0m   I:policy=0
+[2m[36m(RolloutWorker pid=137683)[0m }
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m malmoperformance {
+[2m[36m(RolloutWorker pid=137683)[0m   I:outDir=NONE
+[2m[36m(RolloutWorker pid=137683)[0m }
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m malmoseed {
+[2m[36m(RolloutWorker pid=137683)[0m   I:seed=NONE
+[2m[36m(RolloutWorker pid=137683)[0m }
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m runtype {
+[2m[36m(RolloutWorker pid=137683)[0m   B:replaceable=true
+[2m[36m(RolloutWorker pid=137683)[0m }
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m envtype {
+[2m[36m(RolloutWorker pid=137683)[0m   B:env=true
+[2m[36m(RolloutWorker pid=137683)[0m }
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m /tmp/tmp5btbxooo/Minecraft/run
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m [14:25:49] [main/INFO]: Extra: []
+[2m[36m(RolloutWorker pid=137683)[0m [14:25:49] [main/INFO]: Found and added coremod: com.microsoft.Malmo.OverclockingPlugin
+[2m[36m(RolloutWorker pid=137683)[0m [14:25:49] [main/INFO]: Running with arguments: [--userProperties, {}, --assetsDir, /tmp/tmp5btbxooo/Minecraft/run/gradle/caches/minecraft/assets, --assetIndex, 1.11, --accessToken{REDACTED}, --version, 1.11.2, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, com.microsoft.Malmo.Launcher.tweakers.CoremodTweaker]
+[2m[36m(RolloutWorker pid=137683)[0m [14:25:49] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:25:49] [main/INFO]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:25:49] [main/INFO]: Loading tweak class name com.microsoft.Malmo.Launcher.tweakers.CoremodTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:25:49] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:25:49] [main/INFO]: Forge Mod Loader version 13.20.1.2588 for Minecraft 1.11.2 loading
+[2m[36m(RolloutWorker pid=137683)[0m [14:25:49] [main/INFO]: Java is OpenJDK 64-Bit Server VM, version 1.8.0_312, running on Linux:amd64:3.10.0-1160.45.1.el7.x86_64, installed at /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.312.b07-1.el7_9.x86_64/jre
+[2m[36m(RolloutWorker pid=137683)[0m [14:25:49] [main/INFO]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
+[2m[36m(RolloutWorker pid=137683)[0m [14:25:49] [main/INFO]: Found a command line coremod : com.microsoft.Malmo.OverclockingPlugin
+[2m[36m(RolloutWorker pid=137683)[0m [14:25:49] [main/WARN]: The coremod com.microsoft.Malmo.OverclockingPlugin does not have a MCVersion annotation, it may cause issues with this version of Minecraft
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.7.5 Source=file:/tmp/tmp5btbxooo/Minecraft/build/libs/MalmoMod-0.37.0-fat.jar Service=LaunchWrapper Env=CLIENT
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: Compatibility level set to JAVA_8
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: Calling tweak class com.microsoft.Malmo.Launcher.tweakers.CoremodTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: Injecting location in coremod com.microsoft.Malmo.OverclockingPlugin
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: Loading tweak class name org.spongepowered.asm.mixin.EnvironmentStateTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: Loading tweak class name com.microsoft.Malmo.Launcher.tweakers.AccessTransformerTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:01] [main/ERROR]: The binary patch set is missing. Either you are in a development environment, or things are not going to work!
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:02] [main/ERROR]: FML appears to be missing any signature data. This is not a good thing
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:02] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:02] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:02] [main/INFO]: Calling tweak class org.spongepowered.asm.mixin.EnvironmentStateTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:02] [main/INFO]: Initialised Mixin FML Remapper Adapter with net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper@47747fb9
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:02] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:03] [main/INFO]: Calling tweak class com.microsoft.Malmo.Launcher.tweakers.AccessTransformerTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:03] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:03] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:03] [main/WARN]: Reference map 'mixins.malmo.refmap.json' for mixins.overclocking.malmomod.json could not be read. If this is a development environment you can ignore this message
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:04] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:05] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:insertTextureHandler:120]: MALMO: Found GlStateManager, attempting to transform it
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:05] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:insertTextureHandler:126]: MALMO: Found GlStateManager.bindTexture() method, attempting to transform it
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:05] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:insertTextureHandler:139]: MALMO: Hooked into call to GlStateManager.bindTexture()
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:05] [main/INFO]: A re-entrant transformer '$wrapper.com.microsoft.Malmo.OverclockingClassTransformer' was detected and will no longer process meta class data
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:06] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:transform:42]: Transformed Name: net.minecraft.client.entity.EntityPlayerSP
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:06] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:transform:42]: Transformed Name: net.minecraft.client.entity.AbstractClientPlayer
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:07] [Client thread/INFO]: Setting user: Player428
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:11] [Client thread/WARN]: Skipping bad option: lastServer:
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:11] [Client thread/INFO]: LWJGL Version: 2.9.4
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:12] [Client thread/ERROR]: Couldn't set pixel format
+[2m[36m(RolloutWorker pid=137683)[0m org.lwjgl.LWJGLException: Could not init GLX
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.initDefaultPeerInfo(Native Method) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.<init>(LinuxDisplayPeerInfo.java:61) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplay.createPeerInfo(LinuxDisplay.java:828) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.DrawableGL.setPixelFormat(DrawableGL.java:61) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:846) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:757) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:574) [Minecraft.class:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.init(Minecraft.java:431) [Minecraft.class:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.run(Minecraft.java:352) [Minecraft.class:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.main.Main.main(SourceFile:124) [Main.class:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at com.microsoft.Malmo.Launcher.GradleStartCommon.launch(GradleStartCommon.java:98) [MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at com.microsoft.Malmo.Launcher.GradleStart.main(GradleStart.java:27) [MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:13] [Client thread/INFO]: [STDOUT]: MALMO: Found GlStateManager, attempting to transform it
+[2m[36m(RolloutWorker pid=137684)[0m [68.83079791069031, Superviser] Environment crashed with '/tmp/tmpmc553wqv/Minecraft
+[2m[36m(RolloutWorker pid=137684)[0m # Configuration file
+[2m[36m(RolloutWorker pid=137684)[0m # Autogenerated from command-line options
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m malmoports {
+[2m[36m(RolloutWorker pid=137684)[0m   I:portOverride=12075
+[2m[36m(RolloutWorker pid=137684)[0m }
+[2m[36m(RolloutWorker pid=137684)[0m malmoscore {
+[2m[36m(RolloutWorker pid=137684)[0m   I:policy=0
+[2m[36m(RolloutWorker pid=137684)[0m }
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m malmoperformance {
+[2m[36m(RolloutWorker pid=137684)[0m   I:outDir=NONE
+[2m[36m(RolloutWorker pid=137684)[0m }
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m malmoseed {
+[2m[36m(RolloutWorker pid=137684)[0m   I:seed=NONE
+[2m[36m(RolloutWorker pid=137684)[0m }
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m runtype {
+[2m[36m(RolloutWorker pid=137684)[0m   B:replaceable=true
+[2m[36m(RolloutWorker pid=137684)[0m }
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m envtype {
+[2m[36m(RolloutWorker pid=137684)[0m   B:env=true
+[2m[36m(RolloutWorker pid=137684)[0m }
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m /tmp/tmpmc553wqv/Minecraft/run
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:48] [main/INFO]: Extra: []
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:48] [main/INFO]: Found and added coremod: com.microsoft.Malmo.OverclockingPlugin
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:48] [main/INFO]: Running with arguments: [--userProperties, {}, --assetsDir, /tmp/tmpmc553wqv/Minecraft/run/gradle/caches/minecraft/assets, --assetIndex, 1.11, --accessToken{REDACTED}, --version, 1.11.2, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, com.microsoft.Malmo.Launcher.tweakers.CoremodTweaker]
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:48] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:48] [main/INFO]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:48] [main/INFO]: Loading tweak class name com.microsoft.Malmo.Launcher.tweakers.CoremodTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:48] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:48] [main/INFO]: Forge Mod Loader version 13.20.1.2588 for Minecraft 1.11.2 loading
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:48] [main/INFO]: Java is OpenJDK 64-Bit Server VM, version 1.8.0_312, running on Linux:amd64:3.10.0-1160.45.1.el7.x86_64, installed at /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.312.b07-1.el7_9.x86_64/jre
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:48] [main/INFO]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:48] [main/INFO]: Found a command line coremod : com.microsoft.Malmo.OverclockingPlugin
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:48] [main/WARN]: The coremod com.microsoft.Malmo.OverclockingPlugin does not have a MCVersion annotation, it may cause issues with this version of Minecraft
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:56] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.7.5 Source=file:/tmp/tmpmc553wqv/Minecraft/build/libs/MalmoMod-0.37.0-fat.jar Service=LaunchWrapper Env=CLIENT
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/INFO]: Compatibility level set to JAVA_8
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/INFO]: Calling tweak class com.microsoft.Malmo.Launcher.tweakers.CoremodTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/INFO]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/INFO]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/INFO]: Injecting location in coremod com.microsoft.Malmo.OverclockingPlugin
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/INFO]: Loading tweak class name org.spongepowered.asm.mixin.EnvironmentStateTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/INFO]: Loading tweak class name com.microsoft.Malmo.Launcher.tweakers.AccessTransformerTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:57] [main/ERROR]: The binary patch set is missing. Either you are in a development environment, or things are not going to work!
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:58] [main/ERROR]: FML appears to be missing any signature data. This is not a good thing
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:58] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:58] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:58] [main/INFO]: Calling tweak class org.spongepowered.asm.mixin.EnvironmentStateTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:58] [main/INFO]: Initialised Mixin FML Remapper Adapter with net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper@47747fb9
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:58] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:58] [main/INFO]: Calling tweak class com.microsoft.Malmo.Launcher.tweakers.AccessTransformerTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:58] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:58] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:59] [main/WARN]: Reference map 'mixins.malmo.refmap.json' for mixins.overclocking.malmomod.json could not be read. If this is a development environment you can ignore this message
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:59] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:59] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:insertTextureHandler:120]: MALMO: Found GlStateManager, attempting to transform it
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:59] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:insertTextureHandler:126]: MALMO: Found GlStateManager.bindTexture() method, attempting to transform it
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:59] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:insertTextureHandler:139]: MALMO: Hooked into call to GlStateManager.bindTexture()
+[2m[36m(RolloutWorker pid=137684)[0m [14:25:59] [main/INFO]: A re-entrant transformer '$wrapper.com.microsoft.Malmo.OverclockingClassTransformer' was detected and will no longer process meta class data
+[2m[36m(RolloutWorker pid=137684)[0m [14:26:00] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:transform:42]: Transformed Name: net.minecraft.client.entity.EntityPlayerSP
+[2m[36m(RolloutWorker pid=137684)[0m [14:26:00] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:transform:42]: Transformed Name: net.minecraft.client.entity.AbstractClientPlayer
+[2m[36m(RolloutWorker pid=137684)[0m [14:26:02] [Client thread/INFO]: Setting user: Player585
+[2m[36m(RolloutWorker pid=137684)[0m [14:26:08] [Client thread/WARN]: Skipping bad option: lastServer:
+[2m[36m(RolloutWorker pid=137684)[0m [14:26:08] [Client thread/INFO]: LWJGL Version: 2.9.4
+[2m[36m(RolloutWorker pid=137684)[0m [14:26:12] [Client thread/ERROR]: Couldn't set pixel format
+[2m[36m(RolloutWorker pid=137684)[0m org.lwjgl.LWJGLException: Could not init GLX
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.initDefaultPeerInfo(Native Method) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.<init>(LinuxDisplayPeerInfo.java:61) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.LinuxDisplay.createPeerInfo(LinuxDisplay.java:828) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.DrawableGL.setPixelFormat(DrawableGL.java:61) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.Display.create(Display.java:846) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.Display.create(Display.java:757) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:574) [Minecraft.class:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.client.Minecraft.init(Minecraft.java:431) [Minecraft.class:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.client.Minecraft.run(Minecraft.java:352) [Minecraft.class:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.client.main.Main.main(SourceFile:124) [Main.class:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137684)[0m 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137684)[0m 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137684)[0m 	at com.microsoft.Malmo.Launcher.GradleStartCommon.launch(GradleStartCommon.java:98) [MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137684)[0m 	at com.microsoft.Malmo.Launcher.GradleStart.main(GradleStart.java:27) [MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137684)[0m [14:26:13] [Client thread/INFO]: [STDOUT]: MALMO: Found GlStateManager, attempting to transform it
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:13] [Client thread/INFO]: [STDOUT]: MALMO: Found GlStateManager.bindTexture() method, attempting to transform it
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:13] [Client thread/INFO]: [STDOUT]: MALMO: Hooked into call to GlStateManager.bindTexture()
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:13] [Client thread/INFO]: [net.minecraft.init.Bootstrap:printToSYSOUT:523]: ---- Minecraft Crash Report ----
+[2m[36m(RolloutWorker pid=137683)[0m // I bet Cylons wouldn't have this problem.
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m Time: 1/10/22 2:26 PM
+[2m[36m(RolloutWorker pid=137683)[0m Description: Initializing game
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m org.lwjgl.LWJGLException: Could not init GLX
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.initDefaultPeerInfo(Native Method)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.<init>(LinuxDisplayPeerInfo.java:61)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplay.createPeerInfo(LinuxDisplay.java:828)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.DrawableGL.setPixelFormat(DrawableGL.java:61)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:846)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:757)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:739)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:594)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.init(Minecraft.java:431)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.run(Minecraft.java:352)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.main.Main.main(SourceFile:124)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2m[36m(RolloutWorker pid=137683)[0m 	at java.lang.reflect.Method.invoke(Method.java:498)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2m[36m(RolloutWorker pid=137683)[0m 	at java.lang.reflect.Method.invoke(Method.java:498)
+[2m[36m(RolloutWorker pid=137683)[0m 	at com.microsoft.Malmo.Launcher.GradleStartCommon.launch(GradleStartCommon.java:98)
+[2m[36m(RolloutWorker pid=137683)[0m 	at com.microsoft.Malmo.Launcher.GradleStart.main(GradleStart.java:27)
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m A detailed walkthrough of the error, its code path and all known details is as follows:
+[2m[36m(RolloutWorker pid=137683)[0m ---------------------------------------------------------------------------------------
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m -- Head --
+[2m[36m(RolloutWorker pid=137683)[0m Thread: Client thread
+[2m[36m(RolloutWorker pid=137683)[0m Stacktrace:
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.initDefaultPeerInfo(Native Method)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.<init>(LinuxDisplayPeerInfo.java:61)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplay.createPeerInfo(LinuxDisplay.java:828)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.DrawableGL.setPixelFormat(DrawableGL.java:61)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:846)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:757)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:739)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:594)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.init(Minecraft.java:431)
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m -- Initialization --
+[2m[36m(RolloutWorker pid=137683)[0m Details:
+[2m[36m(RolloutWorker pid=137683)[0m Stacktrace:
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.run(Minecraft.java:352)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.main.Main.main(SourceFile:124)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2m[36m(RolloutWorker pid=137683)[0m 	at java.lang.reflect.Method.invoke(Method.java:498)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2m[36m(RolloutWorker pid=137683)[0m 	at java.lang.reflect.Method.invoke(Method.java:498)
+[2m[36m(RolloutWorker pid=137683)[0m 	at com.microsoft.Malmo.Launcher.GradleStartCommon.launch(GradleStartCommon.java:98)
+[2m[36m(RolloutWorker pid=137683)[0m 	at com.microsoft.Malmo.Launcher.GradleStart.main(GradleStart.java:27)
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m -- System Details --
+[2m[36m(RolloutWorker pid=137683)[0m Details:
+[2m[36m(RolloutWorker pid=137683)[0m 	Minecraft Version: 1.11.2
+[2m[36m(RolloutWorker pid=137683)[0m 	Operating System: Linux (amd64) version 3.10.0-1160.45.1.el7.x86_64
+[2m[36m(RolloutWorker pid=137683)[0m 	Java Version: 1.8.0_312, Red Hat, Inc.
+[2m[36m(RolloutWorker pid=137683)[0m 	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Red Hat, Inc.
+[2m[36m(RolloutWorker pid=137683)[0m 	Memory: 405759368 bytes (386 MB) / 867172352 bytes (827 MB) up to 1908932608 bytes (1820 MB)
+[2m[36m(RolloutWorker pid=137683)[0m 	JVM Flags: 1 total; -Xmx2G
+[2m[36m(RolloutWorker pid=137683)[0m 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+[2m[36m(RolloutWorker pid=137683)[0m 	FML: 
+[2m[36m(RolloutWorker pid=137683)[0m 	Loaded coremods (and transformers): 
+[2m[36m(RolloutWorker pid=137683)[0m OverclockingPlugin (MalmoMod-0.37.0-fat.jar)
+[2m[36m(RolloutWorker pid=137683)[0m   com.microsoft.Malmo.OverclockingClassTransformer
+[2m[36m(RolloutWorker pid=137683)[0m 	Launched Version: 1.11.2
+[2m[36m(RolloutWorker pid=137683)[0m 	LWJGL: 2.9.4
+[2m[36m(RolloutWorker pid=137683)[0m 	OpenGL: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+[2m[36m(RolloutWorker pid=137683)[0m 	GL Caps: 
+[2m[36m(RolloutWorker pid=137683)[0m 	Using VBOs: Yes
+[2m[36m(RolloutWorker pid=137683)[0m 	Is Modded: Definitely; Client brand changed to 'fml,forge'
+[2m[36m(RolloutWorker pid=137683)[0m 	Type: Client (map_client.txt)
+[2m[36m(RolloutWorker pid=137683)[0m 	Resource Packs: 
+[2m[36m(RolloutWorker pid=137683)[0m 	Current Language: ~~ERROR~~ NullPointerException: null
+[2m[36m(RolloutWorker pid=137683)[0m 	Profiler Position: N/A (disabled)
+[2m[36m(RolloutWorker pid=137683)[0m 	CPU: <unknown>
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:13] [Client thread/INFO]: [net.minecraft.init.Bootstrap:printToSYSOUT:523]: #@!@# Game crashed! Crash report saved to: #@!@# /tmp/tmp5btbxooo/Minecraft/run/./crash-reports/crash-2022-01-10_14.26.13-client.txt
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m Minecraft process finished unexpectedly. There was an error with Malmo.'
+[2m[36m(RolloutWorker pid=137683)[0m REBOOT 1
+[2m[36m(RolloutWorker pid=137683)[0m MADE NEW ENV
+[2m[36m(RolloutWorker pid=137684)[0m [14:26:13] [Client thread/INFO]: [STDOUT]: MALMO: Found GlStateManager.bindTexture() method, attempting to transform it
+[2m[36m(RolloutWorker pid=137684)[0m [14:26:13] [Client thread/INFO]: [STDOUT]: MALMO: Hooked into call to GlStateManager.bindTexture()
+[2m[36m(RolloutWorker pid=137684)[0m [14:26:13] [Client thread/INFO]: [net.minecraft.init.Bootstrap:printToSYSOUT:523]: ---- Minecraft Crash Report ----
+[2m[36m(RolloutWorker pid=137684)[0m // Don't do that.
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m Time: 1/10/22 2:26 PM
+[2m[36m(RolloutWorker pid=137684)[0m Description: Initializing game
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m org.lwjgl.LWJGLException: Could not init GLX
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.initDefaultPeerInfo(Native Method)
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.<init>(LinuxDisplayPeerInfo.java:61)
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.LinuxDisplay.createPeerInfo(LinuxDisplay.java:828)
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.DrawableGL.setPixelFormat(DrawableGL.java:61)
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.Display.create(Display.java:846)
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.Display.create(Display.java:757)
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.Display.create(Display.java:739)
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:594)
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.client.Minecraft.init(Minecraft.java:431)
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.client.Minecraft.run(Minecraft.java:352)
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.client.main.Main.main(SourceFile:124)
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2m[36m(RolloutWorker pid=137684)[0m 	at java.lang.reflect.Method.invoke(Method.java:498)
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2m[36m(RolloutWorker pid=137684)[0m 	at java.lang.reflect.Method.invoke(Method.java:498)
+[2m[36m(RolloutWorker pid=137684)[0m 	at com.microsoft.Malmo.Launcher.GradleStartCommon.launch(GradleStartCommon.java:98)
+[2m[36m(RolloutWorker pid=137684)[0m 	at com.microsoft.Malmo.Launcher.GradleStart.main(GradleStart.java:27)
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m A detailed walkthrough of the error, its code path and all known details is as follows:
+[2m[36m(RolloutWorker pid=137684)[0m ---------------------------------------------------------------------------------------
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m -- Head --
+[2m[36m(RolloutWorker pid=137684)[0m Thread: Client thread
+[2m[36m(RolloutWorker pid=137684)[0m Stacktrace:
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.initDefaultPeerInfo(Native Method)
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.<init>(LinuxDisplayPeerInfo.java:61)
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.LinuxDisplay.createPeerInfo(LinuxDisplay.java:828)
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.DrawableGL.setPixelFormat(DrawableGL.java:61)
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.Display.create(Display.java:846)
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.Display.create(Display.java:757)
+[2m[36m(RolloutWorker pid=137684)[0m 	at org.lwjgl.opengl.Display.create(Display.java:739)
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:594)
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.client.Minecraft.init(Minecraft.java:431)
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m -- Initialization --
+[2m[36m(RolloutWorker pid=137684)[0m Details:
+[2m[36m(RolloutWorker pid=137684)[0m Stacktrace:
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.client.Minecraft.run(Minecraft.java:352)
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.client.main.Main.main(SourceFile:124)
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2m[36m(RolloutWorker pid=137684)[0m 	at java.lang.reflect.Method.invoke(Method.java:498)
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+[2m[36m(RolloutWorker pid=137684)[0m 	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2m[36m(RolloutWorker pid=137684)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2m[36m(RolloutWorker pid=137684)[0m 	at java.lang.reflect.Method.invoke(Method.java:498)
+[2m[36m(RolloutWorker pid=137684)[0m 	at com.microsoft.Malmo.Launcher.GradleStartCommon.launch(GradleStartCommon.java:98)
+[2m[36m(RolloutWorker pid=137684)[0m 	at com.microsoft.Malmo.Launcher.GradleStart.main(GradleStart.java:27)
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m -- System Details --
+[2m[36m(RolloutWorker pid=137684)[0m Details:
+[2m[36m(RolloutWorker pid=137684)[0m 	Minecraft Version: 1.11.2
+[2m[36m(RolloutWorker pid=137684)[0m 	Operating System: Linux (amd64) version 3.10.0-1160.45.1.el7.x86_64
+[2m[36m(RolloutWorker pid=137684)[0m 	Java Version: 1.8.0_312, Red Hat, Inc.
+[2m[36m(RolloutWorker pid=137684)[0m 	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Red Hat, Inc.
+[2m[36m(RolloutWorker pid=137684)[0m 	Memory: 429787776 bytes (409 MB) / 866648064 bytes (826 MB) up to 1908932608 bytes (1820 MB)
+[2m[36m(RolloutWorker pid=137684)[0m 	JVM Flags: 1 total; -Xmx2G
+[2m[36m(RolloutWorker pid=137684)[0m 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+[2m[36m(RolloutWorker pid=137684)[0m 	FML: 
+[2m[36m(RolloutWorker pid=137684)[0m 	Loaded coremods (and transformers): 
+[2m[36m(RolloutWorker pid=137684)[0m OverclockingPlugin (MalmoMod-0.37.0-fat.jar)
+[2m[36m(RolloutWorker pid=137684)[0m   com.microsoft.Malmo.OverclockingClassTransformer
+[2m[36m(RolloutWorker pid=137684)[0m 	Launched Version: 1.11.2
+[2m[36m(RolloutWorker pid=137684)[0m 	LWJGL: 2.9.4
+[2m[36m(RolloutWorker pid=137684)[0m 	OpenGL: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+[2m[36m(RolloutWorker pid=137684)[0m 	GL Caps: 
+[2m[36m(RolloutWorker pid=137684)[0m 	Using VBOs: Yes
+[2m[36m(RolloutWorker pid=137684)[0m 	Is Modded: Definitely; Client brand changed to 'fml,forge'
+[2m[36m(RolloutWorker pid=137684)[0m 	Type: Client (map_client.txt)
+[2m[36m(RolloutWorker pid=137684)[0m 	Resource Packs: 
+[2m[36m(RolloutWorker pid=137684)[0m 	Current Language: ~~ERROR~~ NullPointerException: null
+[2m[36m(RolloutWorker pid=137684)[0m 	Profiler Position: N/A (disabled)
+[2m[36m(RolloutWorker pid=137684)[0m 	CPU: <unknown>
+[2m[36m(RolloutWorker pid=137684)[0m [14:26:13] [Client thread/INFO]: [net.minecraft.init.Bootstrap:printToSYSOUT:523]: #@!@# Game crashed! Crash report saved to: #@!@# /tmp/tmpmc553wqv/Minecraft/run/./crash-reports/crash-2022-01-10_14.26.13-client.txt
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m 
+[2m[36m(RolloutWorker pid=137684)[0m Minecraft process finished unexpectedly. There was an error with Malmo.'
+[2m[36m(RolloutWorker pid=137684)[0m REBOOT 1
+[2m[36m(RolloutWorker pid=137684)[0m MADE NEW ENV
+Traceback (most recent call last):
+  File "/fs/clip-scratch/sschulho/GLADIATOR-Project/training/marl.py", line 100, in <module>
+    print(trainer.train())
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/tune/trainable.py", line 314, in train
+    result = self.step()
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/rllib/agents/trainer.py", line 880, in step
+    raise e
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/rllib/agents/trainer.py", line 867, in step
+    result = self.step_attempt()
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/rllib/agents/trainer.py", line 920, in step_attempt
+    step_results = next(self.train_exec_impl)
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 756, in __next__
+    return next(self.built_iterator)
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 783, in apply_foreach
+    for item in it:
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 783, in apply_foreach
+    for item in it:
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 843, in apply_filter
+    for item in it:
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 843, in apply_filter
+    for item in it:
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 783, in apply_foreach
+    for item in it:
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 783, in apply_foreach
+    for item in it:
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 783, in apply_foreach
+    for item in it:
+  [Previous line repeated 1 more time]
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 876, in apply_flatten
+    for item in it:
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 783, in apply_foreach
+    for item in it:
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 783, in apply_foreach
+    for item in it:
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 783, in apply_foreach
+    for item in it:
+  [Previous line repeated 1 more time]
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 471, in base_iterator
+    yield ray.get(futures, timeout=timeout)
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 105, in wrapper
+    return func(*args, **kwargs)
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/worker.py", line 1713, in get
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::RolloutWorker.par_iter_next()[39m (pid=137683, ip=192.168.74.82, repr=<ray.rllib.evaluation.rollout_worker.RolloutWorker object at 0x7fcf28ad0880>)
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/util/iter.py", line 1151, in par_iter_next
+    return next(self.local_it)
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/rllib/evaluation/rollout_worker.py", line 381, in gen_rollouts
+    yield self.sample()
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/rllib/evaluation/rollout_worker.py", line 757, in sample
+    batches = [self.input_reader.next()]
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/rllib/evaluation/sampler.py", line 103, in next
+    batches = [self.get_data()]
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/rllib/evaluation/sampler.py", line 265, in get_data
+    item = next(self._env_runner)
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/rllib/evaluation/sampler.py", line 620, in _env_runner
+    base_env.poll()
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/rllib/env/base_env.py", line 476, in poll
+    obs[i], rewards[i], dones[i], infos[i] = env_state.poll()
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/rllib/env/base_env.py", line 532, in poll
+    self.reset()
+  File "/cliphomes/sschulho/miniconda3/envs/rl/lib/python3.9/site-packages/ray/rllib/env/base_env.py", line 582, in reset
+    self.last_obs = self.env.reset()
+  File "/tmp/ray/session_2022-01-10_14-24-48_962194_137516/runtime_resources/working_dir_files/_ray_pkg_50ffbb6bda2fc813/environment/wrappers.py", line 99, in reset
+    new_obs["agent_0"] = self.__np_transform(obs["agent_0"]["pov"])
+TypeError: 'NoneType' object is not subscriptable
+[2m[36m(RolloutWorker pid=137683)[0m THATS A RESET FAIL /tmp/tmpaeqi__c4/Minecraft
+[2m[36m(RolloutWorker pid=137683)[0m # Configuration file
+[2m[36m(RolloutWorker pid=137683)[0m # Autogenerated from command-line options
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m malmoports {
+[2m[36m(RolloutWorker pid=137683)[0m   I:portOverride=12060
+[2m[36m(RolloutWorker pid=137683)[0m }
+[2m[36m(RolloutWorker pid=137683)[0m malmoscore {
+[2m[36m(RolloutWorker pid=137683)[0m   I:policy=0
+[2m[36m(RolloutWorker pid=137683)[0m }
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m malmoperformance {
+[2m[36m(RolloutWorker pid=137683)[0m   I:outDir=NONE
+[2m[36m(RolloutWorker pid=137683)[0m }
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m malmoseed {
+[2m[36m(RolloutWorker pid=137683)[0m   I:seed=NONE
+[2m[36m(RolloutWorker pid=137683)[0m }
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m runtype {
+[2m[36m(RolloutWorker pid=137683)[0m   B:replaceable=true
+[2m[36m(RolloutWorker pid=137683)[0m }
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m envtype {
+[2m[36m(RolloutWorker pid=137683)[0m   B:env=true
+[2m[36m(RolloutWorker pid=137683)[0m }
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m /tmp/tmpaeqi__c4/Minecraft/run
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:39] [main/INFO]: Extra: []
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:39] [main/INFO]: Found and added coremod: com.microsoft.Malmo.OverclockingPlugin
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:39] [main/INFO]: Running with arguments: [--userProperties, {}, --assetsDir, /tmp/tmpaeqi__c4/Minecraft/run/gradle/caches/minecraft/assets, --assetIndex, 1.11, --accessToken{REDACTED}, --version, 1.11.2, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, com.microsoft.Malmo.Launcher.tweakers.CoremodTweaker]
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:39] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:39] [main/INFO]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:39] [main/INFO]: Loading tweak class name com.microsoft.Malmo.Launcher.tweakers.CoremodTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:39] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:39] [main/INFO]: Forge Mod Loader version 13.20.1.2588 for Minecraft 1.11.2 loading
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:39] [main/INFO]: Java is OpenJDK 64-Bit Server VM, version 1.8.0_312, running on Linux:amd64:3.10.0-1160.45.1.el7.x86_64, installed at /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.312.b07-1.el7_9.x86_64/jre
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:39] [main/INFO]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:39] [main/INFO]: Found a command line coremod : com.microsoft.Malmo.OverclockingPlugin
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:39] [main/WARN]: The coremod com.microsoft.Malmo.OverclockingPlugin does not have a MCVersion annotation, it may cause issues with this version of Minecraft
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:47] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.7.5 Source=file:/tmp/tmpaeqi__c4/Minecraft/build/libs/MalmoMod-0.37.0-fat.jar Service=LaunchWrapper Env=CLIENT
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:47] [main/INFO]: Compatibility level set to JAVA_8
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Calling tweak class com.microsoft.Malmo.Launcher.tweakers.CoremodTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Injecting location in coremod com.microsoft.Malmo.OverclockingPlugin
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Loading tweak class name org.spongepowered.asm.mixin.EnvironmentStateTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Loading tweak class name com.microsoft.Malmo.Launcher.tweakers.AccessTransformerTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/ERROR]: The binary patch set is missing. Either you are in a development environment, or things are not going to work!
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/ERROR]: FML appears to be missing any signature data. This is not a good thing
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Calling tweak class org.spongepowered.asm.mixin.EnvironmentStateTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Initialised Mixin FML Remapper Adapter with net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper@47747fb9
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:48] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:49] [main/INFO]: Calling tweak class com.microsoft.Malmo.Launcher.tweakers.AccessTransformerTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:49] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:49] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:49] [main/WARN]: Reference map 'mixins.malmo.refmap.json' for mixins.overclocking.malmomod.json could not be read. If this is a development environment you can ignore this message
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:50] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:50] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:insertTextureHandler:120]: MALMO: Found GlStateManager, attempting to transform it
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:50] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:insertTextureHandler:126]: MALMO: Found GlStateManager.bindTexture() method, attempting to transform it
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:50] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:insertTextureHandler:139]: MALMO: Hooked into call to GlStateManager.bindTexture()
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:50] [main/INFO]: A re-entrant transformer '$wrapper.com.microsoft.Malmo.OverclockingClassTransformer' was detected and will no longer process meta class data
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:50] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:transform:42]: Transformed Name: net.minecraft.client.entity.EntityPlayerSP
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:50] [main/INFO]: [com.microsoft.Malmo.OverclockingClassTransformer:transform:42]: Transformed Name: net.minecraft.client.entity.AbstractClientPlayer
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:51] [Client thread/INFO]: Setting user: Player310
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:57] [Client thread/WARN]: Skipping bad option: lastServer:
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:57] [Client thread/INFO]: LWJGL Version: 2.9.4
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:58] [Client thread/ERROR]: Couldn't set pixel format
+[2m[36m(RolloutWorker pid=137683)[0m org.lwjgl.LWJGLException: Could not init GLX
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.initDefaultPeerInfo(Native Method) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.<init>(LinuxDisplayPeerInfo.java:61) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplay.createPeerInfo(LinuxDisplay.java:828) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.DrawableGL.setPixelFormat(DrawableGL.java:61) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:846) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:757) ~[MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:574) [Minecraft.class:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.init(Minecraft.java:431) [Minecraft.class:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.run(Minecraft.java:352) [Minecraft.class:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.main.Main.main(SourceFile:124) [Main.class:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_312]
+[2m[36m(RolloutWorker pid=137683)[0m 	at com.microsoft.Malmo.Launcher.GradleStartCommon.launch(GradleStartCommon.java:98) [MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m 	at com.microsoft.Malmo.Launcher.GradleStart.main(GradleStart.java:27) [MalmoMod-0.37.0-fat.jar:?]
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:59] [Client thread/INFO]: [STDOUT]: MALMO: Found GlStateManager, attempting to transform it
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:59] [Client thread/INFO]: [STDOUT]: MALMO: Found GlStateManager.bindTexture() method, attempting to transform it
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:59] [Client thread/INFO]: [STDOUT]: MALMO: Hooked into call to GlStateManager.bindTexture()
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:59] [Client thread/INFO]: [net.minecraft.init.Bootstrap:printToSYSOUT:523]: ---- Minecraft Crash Report ----
+[2m[36m(RolloutWorker pid=137683)[0m // Don't do that.
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m Time: 1/10/22 2:26 PM
+[2m[36m(RolloutWorker pid=137683)[0m Description: Initializing game
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m org.lwjgl.LWJGLException: Could not init GLX
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.initDefaultPeerInfo(Native Method)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.<init>(LinuxDisplayPeerInfo.java:61)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplay.createPeerInfo(LinuxDisplay.java:828)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.DrawableGL.setPixelFormat(DrawableGL.java:61)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:846)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:757)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:739)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:594)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.init(Minecraft.java:431)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.run(Minecraft.java:352)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.main.Main.main(SourceFile:124)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2m[36m(RolloutWorker pid=137683)[0m 	at java.lang.reflect.Method.invoke(Method.java:498)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2m[36m(RolloutWorker pid=137683)[0m 	at java.lang.reflect.Method.invoke(Method.java:498)
+[2m[36m(RolloutWorker pid=137683)[0m 	at com.microsoft.Malmo.Launcher.GradleStartCommon.launch(GradleStartCommon.java:98)
+[2m[36m(RolloutWorker pid=137683)[0m 	at com.microsoft.Malmo.Launcher.GradleStart.main(GradleStart.java:27)
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m A detailed walkthrough of the error, its code path and all known details is as follows:
+[2m[36m(RolloutWorker pid=137683)[0m ---------------------------------------------------------------------------------------
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m -- Head --
+[2m[36m(RolloutWorker pid=137683)[0m Thread: Client thread
+[2m[36m(RolloutWorker pid=137683)[0m Stacktrace:
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.initDefaultPeerInfo(Native Method)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplayPeerInfo.<init>(LinuxDisplayPeerInfo.java:61)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.LinuxDisplay.createPeerInfo(LinuxDisplay.java:828)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.DrawableGL.setPixelFormat(DrawableGL.java:61)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:846)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:757)
+[2m[36m(RolloutWorker pid=137683)[0m 	at org.lwjgl.opengl.Display.create(Display.java:739)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:594)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.init(Minecraft.java:431)
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m -- Initialization --
+[2m[36m(RolloutWorker pid=137683)[0m Details:
+[2m[36m(RolloutWorker pid=137683)[0m Stacktrace:
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.Minecraft.run(Minecraft.java:352)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.client.main.Main.main(SourceFile:124)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2m[36m(RolloutWorker pid=137683)[0m 	at java.lang.reflect.Method.invoke(Method.java:498)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+[2m[36m(RolloutWorker pid=137683)[0m 	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[2m[36m(RolloutWorker pid=137683)[0m 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2m[36m(RolloutWorker pid=137683)[0m 	at java.lang.reflect.Method.invoke(Method.java:498)
+[2m[36m(RolloutWorker pid=137683)[0m 	at com.microsoft.Malmo.Launcher.GradleStartCommon.launch(GradleStartCommon.java:98)
+[2m[36m(RolloutWorker pid=137683)[0m 	at com.microsoft.Malmo.Launcher.GradleStart.main(GradleStart.java:27)
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m -- System Details --
+[2m[36m(RolloutWorker pid=137683)[0m Details:
+[2m[36m(RolloutWorker pid=137683)[0m 	Minecraft Version: 1.11.2
+[2m[36m(RolloutWorker pid=137683)[0m 	Operating System: Linux (amd64) version 3.10.0-1160.45.1.el7.x86_64
+[2m[36m(RolloutWorker pid=137683)[0m 	Java Version: 1.8.0_312, Red Hat, Inc.
+[2m[36m(RolloutWorker pid=137683)[0m 	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Red Hat, Inc.
+[2m[36m(RolloutWorker pid=137683)[0m 	Memory: 234916048 bytes (224 MB) / 861929472 bytes (822 MB) up to 1908932608 bytes (1820 MB)
+[2m[36m(RolloutWorker pid=137683)[0m 	JVM Flags: 1 total; -Xmx2G
+[2m[36m(RolloutWorker pid=137683)[0m 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+[2m[36m(RolloutWorker pid=137683)[0m 	FML: 
+[2m[36m(RolloutWorker pid=137683)[0m 	Loaded coremods (and transformers): 
+[2m[36m(RolloutWorker pid=137683)[0m OverclockingPlugin (MalmoMod-0.37.0-fat.jar)
+[2m[36m(RolloutWorker pid=137683)[0m   com.microsoft.Malmo.OverclockingClassTransformer
+[2m[36m(RolloutWorker pid=137683)[0m 	Launched Version: 1.11.2
+[2m[36m(RolloutWorker pid=137683)[0m 	LWJGL: 2.9.4
+[2m[36m(RolloutWorker pid=137683)[0m 	OpenGL: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+[2m[36m(RolloutWorker pid=137683)[0m 	GL Caps: 
+[2m[36m(RolloutWorker pid=137683)[0m 	Using VBOs: Yes
+[2m[36m(RolloutWorker pid=137683)[0m 	Is Modded: Definitely; Client brand changed to 'fml,forge'
+[2m[36m(RolloutWorker pid=137683)[0m 	Type: Client (map_client.txt)
+[2m[36m(RolloutWorker pid=137683)[0m 	Resource Packs: 
+[2m[36m(RolloutWorker pid=137683)[0m 	Current Language: ~~ERROR~~ NullPointerException: null
+[2m[36m(RolloutWorker pid=137683)[0m 	Profiler Position: N/A (disabled)
+[2m[36m(RolloutWorker pid=137683)[0m 	CPU: <unknown>
+[2m[36m(RolloutWorker pid=137683)[0m [14:26:59] [Client thread/INFO]: [net.minecraft.init.Bootstrap:printToSYSOUT:523]: #@!@# Game crashed! Crash report saved to: #@!@# /tmp/tmpaeqi__c4/Minecraft/run/./crash-reports/crash-2022-01-10_14.26.59-client.txt
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m 
+[2m[36m(RolloutWorker pid=137683)[0m Minecraft process finished unexpectedly. There was an error with Malmo.

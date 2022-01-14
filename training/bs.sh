@@ -4,7 +4,7 @@
 #SBATCH --qos=gpu-medium
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks=5
-#SBATCH --output /cliphomes/sschulho/out.txt
-#SBATCH --error /cliphomes/sschulho/out.txt
+####SBATCH --output /cliphomes/sschulho/out.txt
+####SBATCH --error /cliphomes/sschulho/out.txt
 echo $(hostname)
-python marl.py
+xvfb-run python3 marl.py

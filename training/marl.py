@@ -6,7 +6,7 @@ sys.path.append(os.getcwd())
 sys.path.append("..")
 sys.path.append("/tmp/GLADIATOR-Project/environment")
 import ray
-ray.init(runtime_env={"working_dir": "GLADIATOR-Project"})
+ray.init(runtime_env={"working_dir": "/fs/clip-scratch/sschulho/GLADIATOR-Project"})
 from ray.rllib.agents.ppo import PPOTrainer
 from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog

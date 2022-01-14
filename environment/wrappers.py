@@ -189,8 +189,8 @@ class SuperviserWrapper(gym.Wrapper):
         print("MADE NEW ENV")
         try:
             return self.env.reset()
-        except Exception:
-            print("THATS A RESET FAIL")
+        except Exception as e:
+            print("THATS A RESET FAIL", e)
 
     def reset(self, **kwargs):
         try:

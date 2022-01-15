@@ -77,7 +77,7 @@ class OneVersusOneWrapper(MultiAgentEnv):
         # if agent dies lol
         dones = {"agent_0":False, "agent_1":False, "__all__":False}
         
-        if a0_new_health == 0 or a1_new_health == 0 or done or self.steps > 10:
+        if a0_new_health == 0 or a1_new_health == 0 or done or self.steps > 200:
             dones = {"agent_0":True, "agent_1":True, "__all__":True}
         # convert to pytorch and normalize
         new_obs = {}

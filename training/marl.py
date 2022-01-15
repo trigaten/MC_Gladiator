@@ -4,9 +4,9 @@ import sys
 sys.path.append(os.getcwd()) 
 
 sys.path.append("..")
-sys.path.append("/tmp/GLADIATOR-Project/environment")
+sys.path.append("/home/sanders/GLADIATOR-Project/environment")
 import ray
-ray.init(runtime_env={"working_dir": "/fs/clip-scratch/sschulho/GLADIATOR-Project"})
+ray.init(runtime_env={"working_dir": "/home/sanders/GLADIATOR-Project"})
 from ray.rllib.agents.ppo import PPOTrainer
 from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
@@ -63,7 +63,7 @@ config = {
     "env": "1v1env",
     # Use 2 environment workers (aka "rollout workers") that parallelly
     # collect samples from their own environment clone(s).
-    "num_workers": 2,
+    "num_workers": 0,
     # Change this to "framework: torch", if you are using PyTorch.
     # Also, use "framework: tf2" for tf2.x eager execution.
     "framework": "torch",
@@ -84,6 +84,7 @@ config = {
 
         "policies_to_train": ["policy_01"]
     },
+    "num_gpus": 1,
     # "ignore_worker_failures": True,
     # Set up a separate evaluation worker set for the
     # `trainer.evaluate()` call after training (see below).

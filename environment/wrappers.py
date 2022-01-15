@@ -77,8 +77,8 @@ class OneVersusOneWrapper(MultiAgentEnv):
         # if agent dies lol
         dones = {"agent_0":False, "agent_1":False, "__all__":False}
         
-        if a0_new_health == 0 or a1_new_health == 0 or done or self.steps > 200:
-            dones = {"agent_0":True, "agent_1":True, "__all__":True}
+        # if a0_new_health == 0 or a1_new_health == 0 or done or self.steps > 200000:
+        #     dones = {"agent_0":True, "agent_1":True, "__all__":True}
         # convert to pytorch and normalize
         new_obs = {}
         new_obs["agent_0"] = self.__np_transform(obs["agent_0"]["pov"])
@@ -94,6 +94,7 @@ class OneVersusOneWrapper(MultiAgentEnv):
 
     def reset(self):
         obs = self.env.reset()
+        self.steps = 0
         # to pytorch tensors
         new_obs = {}
         new_obs["agent_0"] = self.__np_transform(obs["agent_0"]["pov"])

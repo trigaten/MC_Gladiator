@@ -89,6 +89,9 @@ class PvpBox(SimpleEmbodimentEnvSpec):
         return [
             handlers.TimeInitialCondition(
                 allow_passage_of_time=False
+            ),
+            handlers.SpawningInitialCondition(
+                allow_spawning=True
             )
         ]
 

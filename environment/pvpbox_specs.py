@@ -100,3 +100,10 @@ class PvpBox(SimpleEmbodimentEnvSpec):
 
     def get_docstring(self):
         return PVPBOX_DOC
+
+class PvpBoxNoQuit(PvpBox):
+    """env doesnt reset when another agent dies"""
+    def create_server_quit_producers(self):
+        return [
+
+        ]

@@ -17,12 +17,6 @@ import torch.nn as nn
 
 
 from ray.rllib.models.torch.torch_modelv2 import TorchModelV2
-from ray.rllib.models.torch.recurrent_net import RecurrentNetwork
-import numpy as np
-from typing import Dict, List
-import gym
-
-from ray.rllib.models.torch.torch_modelv2 import TorchModelV2
 from ray.rllib.models.torch.misc import normc_initializer, same_padding, \
     SlimConv2d, SlimFC
 from ray.rllib.models.utils import get_activation_fn, get_filter_config
@@ -31,7 +25,7 @@ from ray.rllib.utils.framework import try_import_torch
 from ray.rllib.utils.typing import ModelConfigDict, TensorType
 from environment.dummy_spec import DummyGym
 from environment.dummy_spec import DummyMAGym
-from environment.pvpbox_specs import PvpBox
+from environment.pvpbox_specs import PvpBoxNoQuit
 from environment.wrappers import *
 
 from Agent import Agent
@@ -45,7 +39,7 @@ agent_actions = [("attack", 1), ("left", 1), ("right", 1), ("camera", [0,15]), (
 num_actions = len(agent_actions)
 def env_creator(env_config):
     # return DummyGym()
-    return OneVersusOneWrapper(SuperviserWrapper(PvpBox(agent_count=2).make(instances=[])), agent_actions)
+    return OneVersusOneWrapper(SuperviserWrapper(PvpBoxNoQuit(agent_count=2).make(instances=[])), agent_actions)
     # return CartPoleEnv()
     # env = OneVersusOneWrapper(PvpBox(agent_count=2).make(instances=[]))
     # opponent = Agent(Discrete_PPO_net(num_actions), False)

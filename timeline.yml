@@ -1,2 +1,4 @@
 - date: January 14th 2022
   info: got script running on Jordan Terry's dream cluster with 1 GPU and 0 nodes. Miffyli just suggested to ensure env doesnt reset often. rn at ~250 episodes/hour
+- date: January 15th 2022
+  info: Added ChatAction handler to MineRL. Can now execute Minecraft Commands!

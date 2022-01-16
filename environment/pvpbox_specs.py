@@ -38,15 +38,26 @@ class PvpBox(SimpleEmbodimentEnvSpec):
     def create_agent_start(self) -> List[Handler]:
         """Make agents have iron swords and start at the specified location."""
         return [
-            handlers.SimpleInventoryAgentStart([
-                dict(type="iron_sword", quantity=1)
-            ]),
-            handlers.AgentStartPlacement(0, 5, 0, 0, 0)
+            # handlers.SimpleInventoryAgentStart([
+            #     dict(type="iron_sword", quantity=1)
+            # ]),
+            handlers.AgentStartPlacement(0, 5, 0, 0, 0),
+            handlers.StartingHealthAgentStart(max_health=40, health=40),
+
+            # dont ask...
+            # handlers.SimpleInventoryAgentStart([
+            #     {'type':'iron_boots', 'quantity':1} for i in range(140)
+            # ]),
         ]
-   
+
+    def create_actionables(self) -> List[Handler]:
+        """Will be used to reset agents health, etc. without resetting the entire environment"""
+        return super().create_actionables() + [
+            handlers.ChatAction()
+        ]
+
     def create_agent_handlers(self) -> List[Handler]:
         return []
-    
     
     def create_observables(self) -> List[Handler]:
         """
@@ -59,7 +70,6 @@ class PvpBox(SimpleEmbodimentEnvSpec):
             handlers.ObservationFromLifeStats()
         ]
 
-    # 
     def create_server_world_generators(self) -> List[Handler]:
         """Make the agent spawn on a super flat world
         Also draw a box around it"""
@@ -89,6 +99,9 @@ class PvpBox(SimpleEmbodimentEnvSpec):
         return [
             handlers.TimeInitialCondition(
                 allow_passage_of_time=False
+            ),
+            handlers.SpawningInitialCondition(
+                allow_spawning=False
             )
         ]
 
@@ -100,3 +113,10 @@ class PvpBox(SimpleEmbodimentEnvSpec):
 
     def get_docstring(self):
         return PVPBOX_DOC
+
+class PvpBoxNoQuit(PvpBox):
+    """env doesnt reset when another agent dies"""
+    def create_server_quit_producers(self):
+        return [
+
+        ]

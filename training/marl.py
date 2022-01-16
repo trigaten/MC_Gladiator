@@ -91,7 +91,7 @@ config = {
 
 # Create our RLlib Trainer.
 trainer = PPOTrainer(config=config)
-for i in range(1):
+for i in range(1000):
     print(trainer.train())
     # if i % 1 == 0:
     #     trainer.set_weights({

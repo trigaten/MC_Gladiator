@@ -36,7 +36,7 @@ for i in range(100):
     done = {"__all__":False}
     while not done["__all__"]:
         steps += 1
-        env.env.render()
+  #      env.env.render()
         actions = {
             "agent_0": random.choice(range(0,len(agent_actions))),
             "agent_1": random.choice(range(0,len(agent_actions)))

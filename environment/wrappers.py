@@ -73,7 +73,7 @@ class OneVersusOneWrapper(MultiAgentEnv):
         # mean that the agent has damaged the other, which is good) 
         a0_reward -= a1_reward
         a1_reward -= a0_reward
-        print(a0_reward, a1_reward)
+
         # set the rewards
         reward = {}
         reward["agent_0"] = a0_reward

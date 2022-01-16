@@ -23,9 +23,10 @@ reset_counter = 0
 class OneVersusOneWrapper(MultiAgentEnv):
     """Wrapper for a 1v1 version of the multiagent pvp gym.
     This wrapper awards rewards based changes in agents' health.
-    It also converts np observation arrays to pytorch tensors and 
-    normalizes its values by dividing by 255.
     It also calculates when an agent dies and terminates the episode.
+    It also 'resets' the environment by resetting agents' health, 
+    setting their gamemode, and setting their position. This is much more
+    efficient than completely resetting the environment.
     """
     def __init__(self, env, actions):
         super().__init__()
@@ -33,13 +34,24 @@ class OneVersusOneWrapper(MultiAgentEnv):
         self.actions = actions
         self.action_space = spaces.Discrete(3)
         self.observation_space = spaces.Box(0, 255, [3, 64, 64])
-        self.a0_health = 20
-        self.a1_health = 20
+        self.a0_health = 40
+        self.a1_health = 40
         self.steps = 0
+        # count how many times the env has reset
         self.resets = 0
+        self.mc_init_commands = [
+        "/give @a minecraft:iron_sword 1 0 {Unbreakable:1}", "/gamemode adventure @a"
+        ]
+        self.mc_reset_commands = [
+            "/tp @a 0 5 0", 
+            "/effect @a minecraft:instant_health 1 100 true", 
+            "/effect @a minecraft:saturation 1 255 true", 
+            "/tp MineRLAgent0 0 5 -2",
+            "/tp MineRLAgent1 0 5 2 180 0",
+        ]
 
     def step(self, actions):
-        dual_action = self.env.action_space.noop()
+        dual_action = {"agent_0":{"camera":[0,0]},"agent_1":{"camera":[0,0]}}
         # get the MineRL string action
         hero_action, hero_action_amt = self.actions[actions["agent_0"]]
         # set the action to its value
@@ -61,7 +73,7 @@ class OneVersusOneWrapper(MultiAgentEnv):
         # mean that the agent has damaged the other, which is good) 
         a0_reward -= a1_reward
         a1_reward -= a0_reward
-
+        print(a0_reward, a1_reward)
         # set the rewards
         reward = {}
         reward["agent_0"] = a0_reward
@@ -77,8 +89,8 @@ class OneVersusOneWrapper(MultiAgentEnv):
         # if agent dies lol
         dones = {"agent_0":False, "agent_1":False, "__all__":False}
         
-        # if a0_new_health == 0 or a1_new_health == 0 or done or self.steps > 200000:
-        #     dones = {"agent_0":True, "agent_1":True, "__all__":True}
+        if a0_new_health <= 20 or a1_new_health <= 20 or done or self.steps > 200000:
+            dones = {"agent_0":True, "agent_1":True, "__all__":True}
         # convert to pytorch and normalize
         new_obs = {}
         new_obs["agent_0"] = self.__np_transform(obs["agent_0"]["pov"])
@@ -93,68 +105,35 @@ class OneVersusOneWrapper(MultiAgentEnv):
         return np.flip(np_array,axis=0).transpose(2,0,1)
 
     def reset(self):
-        obs = self.env.reset()
+        # reset basic info
         self.steps = 0
+        self.a0_health = 40
+        self.a1_health = 40
+
+        # if the environment has never been reset,
+        # we need MineRL to reset/build it
+        if self.resets == 0:
+            obs = self.env.reset()
+            # do init commands
+            for mc_command in self.mc_init_commands:
+                action = {"agent_0":{"chat":mc_command, "camera":[0,0]},"agent_1":{"camera":[0,0]}}
+                obs, reward, done, info = self.env.step(action)
+        for mc_command in self.mc_reset_commands:
+            obs, reward, done, info = self.env.step({"agent_0":{"chat":mc_command, "camera":[0,0]},"agent_1":{"camera":[0,0]}})
+        
         # to pytorch tensors
         new_obs = {}
         new_obs["agent_0"] = self.__np_transform(obs["agent_0"]["pov"])
         new_obs["agent_1"] = self.__np_transform(obs["agent_1"]["pov"])
+        
         self.resets+=1
         print("RESETS", self.resets)
        
         return new_obs
 
-class OpponentStepWrapper(gym.Wrapper):
-    """This wrapper makes the environment look like a single agent environment.
-    The action/observation space of the opponent agent does not get returned.
-    This wrapper also ensures that the opponent agent acts according to its own
-    neural network.
-    """
-    def __init__(self, env, opponent, actions):
-        """
-        :param actions: a dictionary of strings to values corresponding to 
-        MineRL actions (and how much of the action to perform)
-        """
-        super().__init__(env)
-        self.env = env
-        self.opponent = opponent
-        self.opponent_obs = None
-        self.actions = actions
-    
-    def step(self, hero_action):
-        """
-        :param hero_action: an integer value corresponding to an index in
-        self.actions
-        """
-        # get the action, we dont care about other information
-        # because we arent training this agent
-        opponent_action, _, _ = self.opponent(self.opponent_obs)
-        # get the default noop action
-        dual_action = self.env.action_space.noop()
-        # get the MineRL string action
-        op_ac_str = list(self.actions)[opponent_action]
-        # set the action to its value
-        dual_action["agent_1"][op_ac_str] = self.actions[op_ac_str]
-        # get the MineRL string action for the hero action
-        hero_ac_str = list(self.actions)[hero_action]
-        # set the action to its value
-        dual_action["agent_0"][hero_ac_str] = self.actions[hero_ac_str]
-        # perform a step
-        obs, reward, done, info = self.env.step(dual_action)
-        # return information for agent_0
-        return obs["agent_0"]["pov"], reward["agent_0"], done, info
-
-    def reset(self):
-        """just returns observation from first agent"""
-        if random.rand() > 0.8:
-            raise Exception()
-        obs = self.env.reset()
-        self.opponent_obs = obs["agent_1"]["pov"]
-        return obs["agent_0"]["pov"]
-
 class SuperviserWrapper(gym.Wrapper):
     """
-    Made by Miffyli
+    Adapted from Miffyli's code
     Wrapper that reboots the environment if it happens to crash.
 
     If environment crashes during step, we return the latest

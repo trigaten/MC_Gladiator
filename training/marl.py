@@ -4,9 +4,9 @@ import sys
 sys.path.append(os.getcwd()) 
 
 sys.path.append("..")
-sys.path.append("/home/sanders/GLADIATOR-Project/environment")
+sys.path.append("/Users/sander/Desktop/Gladiator/GLADIATOR-Project/environment")
 import ray
-ray.init(runtime_env={"working_dir": "/home/sanders/GLADIATOR-Project"})
+ray.init(runtime_env={"working_dir": "/Users/sander/Desktop/Gladiator/GLADIATOR-Project"})
 from ray.rllib.agents.ppo import PPOTrainer
 from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
@@ -78,7 +78,7 @@ config = {
 
         "policies_to_train": ["policy_01"]
     },
-    "num_gpus": 1,
+    # "num_gpus": 1,
     # "ignore_worker_failures": True,
     # Set up a separate evaluation worker set for the
     # `trainer.evaluate()` call after training (see below).
@@ -90,7 +90,6 @@ config = {
 }
 
 # Create our RLlib Trainer.
-trainer = PPOTrainer(config=config)
 for i in range(1000):
     print(trainer.train())
     # if i % 1 == 0:

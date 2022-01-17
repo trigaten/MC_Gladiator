@@ -2,11 +2,10 @@
 import os
 import sys
 sys.path.append(os.getcwd()) 
-
-sys.path.append("..")
-sys.path.append("/Users/sander/Desktop/Gladiator/GLADIATOR-Project/environment")
+sys.path.append("/home/sanders/GLADIATOR-Project/environment")
 import ray
-ray.init(runtime_env={"working_dir": "/Users/sander/Desktop/Gladiator/GLADIATOR-Project"})
+sys.path.append("..")
+ray.init(runtime_env={"working_dir": "/home/sanders/GLADIATOR-Project"})
 from ray.rllib.agents.ppo import PPOTrainer
 from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
@@ -88,6 +87,8 @@ config = {
     #     "render_env": True,
     # }
 }
+
+trainer = PPOTrainer(config=config)
 
 # Create our RLlib Trainer.
 for i in range(1000):

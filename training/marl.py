@@ -97,8 +97,8 @@ for i in range(1000):
     #     trainer.set_weights({
     #         "policy_02": trainer.get_weights(["policy_01"])["policy_01"], 
     #     })
-    checkpoint = trainer.save()
-    print("checkpoint saved at", checkpoint)
+    #checkpoint = trainer.save()
+    #print("checkpoint saved at", checkpoint)
 # print(trainer.get_weights(["policy_01"]))
 
 # Evaluate the trained Trainer (and render each timestep to the shell's

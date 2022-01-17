@@ -60,6 +60,7 @@ class OneVersusOneWrapper(MultiAgentEnv):
         # set the action to its value
         dual_action["agent_1"][opponent_action] = opponent_action_amt
         obs, reward, done, info = self.env.step(dual_action)
+        #print("IIINFO", info)
         # update stored health for both agents
         a0_new_health = obs["agent_0"]["life_stats"]["life"]
         a1_new_health = obs["agent_1"]["life_stats"]["life"]

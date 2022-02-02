@@ -1,2 +1,6 @@
 https://crunchify.com/how-to-change-default-java-jdk-jvm-classpath-in-linux-using-bash_profil/
-https://askubuntu.com/questions/740757/switch-between-multiple-java-versions
+https://askubuntu.com/questions/740757/switch-between-multiple-java-version
+
+
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATHs

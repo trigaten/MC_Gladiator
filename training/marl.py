@@ -46,7 +46,7 @@ agent_actions = [("attack", 1), ("left", 1), ("right", 1), ("camera", [0,15]), (
 num_actions = len(agent_actions)
 def env_creator(env_config):
     # return DummyGym()
-    return OneVersusOneWrapper(SuperviserWrapper(PvpBox(agent_count=2).make(instances=[])), agent_actions)
+    return OneVersusOneWrapper(PvpBox(agent_count=2).make(instances=[])), agent_actions)
     # return CartPoleEnv()
     # env = OneVersusOneWrapper(PvpBox(agent_count=2).make(instances=[]))
     # opponent = Agent(Discrete_PPO_net(num_actions), False)

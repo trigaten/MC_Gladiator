@@ -84,11 +84,9 @@ class PvpBox(SimpleEmbodimentEnvSpec):
           ]
 
     def create_server_quit_producers(self) -> List[Handler]:
-        """Quit on server time up or when any agent finishes"""
+        """Dont quit"""
         return [
-            handlers.ServerQuitFromTimeUp(
-                (PVPBOX_LENGTH * MS_PER_STEP)),
-            handlers.ServerQuitWhenAnyAgentFinishes()
+            handlers.ServerQuitFromTimeUp(5000000)
         ]
 
     def create_server_decorators(self) -> List[Handler]:
@@ -113,10 +111,3 @@ class PvpBox(SimpleEmbodimentEnvSpec):
 
     def get_docstring(self):
         return PVPBOX_DOC
-
-class PvpBoxNoQuit(PvpBox):
-    """env doesnt reset when another agent dies"""
-    def create_server_quit_producers(self):
-        return [
-
-        ]

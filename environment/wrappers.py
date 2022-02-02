@@ -34,8 +34,10 @@ class OneVersusOneWrapper(MultiAgentEnv):
         self.actions = actions
         self.action_space = spaces.Discrete(3)
         self.observation_space = spaces.Box(0, 255, [3, 64, 64])
-        self.a0_health = 40
-        self.a1_health = 40
+        self.START_HEALTH = 40
+        self.MAX_STEPS = 400
+        self.a0_health = self.START_HEALTH
+        self.a1_health = self.START_HEALTH
         self.steps = 0
         # count how many times the env has reset
         self.resets = 0
@@ -60,6 +62,11 @@ class OneVersusOneWrapper(MultiAgentEnv):
         # set the action to its value
         dual_action["agent_1"][opponent_action] = opponent_action_amt
         obs, reward, done, info = self.env.step(dual_action)
+        if 'error' in info["agent_0"]:
+            print("Error", info)
+            print(obs)
+            obs = self.env.reboot_env()
+        print("IIINFO", info)
         # update stored health for both agents
         a0_new_health = obs["agent_0"]["life_stats"]["life"]
         a1_new_health = obs["agent_1"]["life_stats"]["life"]
@@ -89,7 +96,14 @@ class OneVersusOneWrapper(MultiAgentEnv):
         # if agent dies lol
         dones = {"agent_0":False, "agent_1":False, "__all__":False}
         
-        if a0_new_health <= 20 or a1_new_health <= 20 or done or self.steps > 200000:
+        if a0_new_health <= 20 or a1_new_health <= 20 or done or self.steps >= self.MAX_STEPS:
+            # extra reward for killing other agent
+            if a0_new_health <= 20:
+                reward["agent_1"] += 10
+                reward["agent_0"] -= 10
+            if a1_new_health <= 20:
+                reward["agent_0"] += 10
+                reward["agent_1"] -= 10
             dones = {"agent_0":True, "agent_1":True, "__all__":True}
         # convert to pytorch and normalize
         new_obs = {}
@@ -107,8 +121,8 @@ class OneVersusOneWrapper(MultiAgentEnv):
     def reset(self):
         # reset basic info
         self.steps = 0
-        self.a0_health = 40
-        self.a1_health = 40
+        self.a0_health = self.START_HEALTH
+        self.a1_health = self.START_HEALTH
 
         # if the environment has never been reset,
         # we need MineRL to reset/build it
@@ -175,18 +189,14 @@ class SuperviserWrapper(gym.Wrapper):
     def reset(self, **kwargs):
         try:
             obs = self.env.reset(**kwargs)
-            self.last_obs = obs
         except Exception as e:
             print("[{}, Superviser] Environment crashed with '{}'".format(
                 time.time() - self.start_time, str(e))
             )
-            # Create something to return
-            obs = self.last_obs
-            reward = 0
-            done = True
-            info = {}
+
             # Re-create the environment
             obs = self.reboot_env()
+        self.last_obs = obs
         return obs
 
     def step(self, action):

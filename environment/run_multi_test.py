@@ -13,11 +13,12 @@ sys.path.append("../..")
 import minerl
 # from minerl.env.malmo import InstanceManager
 import argparse
-from pvpbox_specs import PvpBoxNoQuit
-from wrappers import OneVersusOneWrapper
+from pvpbox_specs import PvpBox
+from wrappers import OneVersusOneWrapper, SuperviserWrapper
 import gym
 import random
-env_spec = PvpBoxNoQuit(agent_count=2)
+import time
+env_spec = PvpBox(agent_count=2)
 
 #     # IF you want to use existing instances use this!
 #     # instances = [
@@ -26,7 +27,7 @@ env_spec = PvpBoxNoQuit(agent_count=2)
 instances = []
 agent_actions = [("attack", 1), ("forward", 1), ("backward", 1), ("left", 1), ("right", 1), ("camera", [0,15]), ("camera", [0,-15])]
 
-env = OneVersusOneWrapper(env_spec.make(instances=instances), agent_actions)
+env = (OneVersusOneWrapper(env_spec.make(instances=instances), agent_actions))
 
 for i in range(100):
     obs = env.reset()
@@ -35,8 +36,11 @@ for i in range(100):
 
     done = {"__all__":False}
     while not done["__all__"]:
+        
         steps += 1
-  #      env.env.render()
+        if steps == 50:
+            time.sleep(1)
+        env.env.render()
         actions = {
             "agent_0": random.choice(range(0,len(agent_actions))),
             "agent_1": random.choice(range(0,len(agent_actions)))
@@ -45,6 +49,8 @@ for i in range(100):
 
         # print(str(steps) + " actions: " + str(actions))
         obs, reward, done, info = env.step(actions)
+        print(info)
+    
     
 
 

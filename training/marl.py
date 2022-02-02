@@ -1,11 +1,19 @@
-# Import the RL algorithm (Trainer) we would like to use.
+
+import configparser
+
+config = configparser.RawConfigParser()
+config.read('ray_config.cfg')
+
+paths = dict(config.items('PATHS'))
+
 import os
 import sys
 sys.path.append(os.getcwd()) 
-sys.path.append("/home/sanders/GLADIATOR-Project/environment")
-import ray
+
 sys.path.append("..")
-ray.init(runtime_env={"working_dir": "/home/sanders/GLADIATOR-Project"})
+sys.path.append(paths["glob"])
+import ray
+ray.init(runtime_env={"working_dir": paths["work"]})
 from ray.rllib.agents.ppo import PPOTrainer
 from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
@@ -24,7 +32,7 @@ from ray.rllib.utils.framework import try_import_torch
 from ray.rllib.utils.typing import ModelConfigDict, TensorType
 from environment.dummy_spec import DummyGym
 from environment.dummy_spec import DummyMAGym
-from environment.pvpbox_specs import PvpBoxNoQuit
+from environment.pvpbox_specs import PvpBox
 from environment.wrappers import *
 
 from Agent import Agent
@@ -38,7 +46,7 @@ agent_actions = [("attack", 1), ("left", 1), ("right", 1), ("camera", [0,15]), (
 num_actions = len(agent_actions)
 def env_creator(env_config):
     # return DummyGym()
-    return OneVersusOneWrapper(SuperviserWrapper(PvpBoxNoQuit(agent_count=2).make(instances=[])), agent_actions)
+    return OneVersusOneWrapper(SuperviserWrapper(PvpBox(agent_count=2).make(instances=[])), agent_actions)
     # return CartPoleEnv()
     # env = OneVersusOneWrapper(PvpBox(agent_count=2).make(instances=[]))
     # opponent = Agent(Discrete_PPO_net(num_actions), False)
@@ -77,6 +85,9 @@ config = {
 
         "policies_to_train": ["policy_01"]
     },
+    "rollout_fragment_length": 128,
+    "train_batch_size": 512,
+    "sgd_minibatch_size": 128
     # "num_gpus": 1,
     # "ignore_worker_failures": True,
     # Set up a separate evaluation worker set for the
@@ -91,7 +102,7 @@ config = {
 trainer = PPOTrainer(config=config)
 
 # Create our RLlib Trainer.
-for i in range(1000):
+for i in range(20):
     print(trainer.train())
     # if i % 1 == 0:
     #     trainer.set_weights({

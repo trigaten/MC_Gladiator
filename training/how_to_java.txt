@@ -3,4 +3,4 @@ https://askubuntu.com/questions/740757/switch-between-multiple-java-version
 
 
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
-export PATH=$JAVA_HOME/bin:$PATHs
+export PATH=$JAVA_HOME/bin:$PATH

@@ -120,6 +120,7 @@ class OneVersusOneWrapper(MultiAgentEnv):
 
     def reset(self):
         # reset basic info
+        print(self.steps)
         self.steps = 0
         self.a0_health = self.START_HEALTH
         self.a1_health = self.START_HEALTH
@@ -134,7 +135,14 @@ class OneVersusOneWrapper(MultiAgentEnv):
                 obs, reward, done, info = self.env.step(action)
         for mc_command in self.mc_reset_commands:
             obs, reward, done, info = self.env.step({"agent_0":{"chat":mc_command, "camera":[0,0]},"agent_1":{"camera":[0,0]}})
-        
+            if done:
+                obs = self.env.reset()
+                # do init commands
+                for mc_command in self.mc_init_commands:
+                    action = {"agent_0":{"chat":mc_command, "camera":[0,0]},"agent_1":{"camera":[0,0]}}
+                    obs, reward, done, info = self.env.step(action)
+                break
+
         # to pytorch tensors
         new_obs = {}
         new_obs["agent_0"] = self.__np_transform(obs["agent_0"]["pov"])

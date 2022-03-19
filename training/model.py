@@ -43,14 +43,14 @@ class Discrete_PPO_net(RecurrentNetwork, nn.Module):
 
     # Action
     self.action = nn.Sequential(
-      nn.Linear(2048, 512, bias=False), 
+      nn.Linear(2048, 512), 
       nn.ReLU(),
       nn.Linear(512, self.num_outputs, bias=False),
     )
 
     # Value
     self.value = nn.Sequential(
-      nn.Linear(2048, 512, bias=False),
+      nn.Linear(2048, 512),
       nn.ReLU(),
       nn.Linear(512, 1, bias=False),
     )

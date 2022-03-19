@@ -42,7 +42,7 @@ from Agent import Agent
 #from ray.rllib.env.wrappers.open_spiel import OpenSpielEnv
 
 
-agent_actions = [("attack", 1), ("left", 1), ("right", 1), ("camera", [0,15]), ("camera", [0,-15])]
+agent_actions = [("attack", 1), ("left", 1), ("back", 1), ("right", 1), ("forward", 1), ("camera", [0,15]), ("camera", [0,-15])]
 num_actions = len(agent_actions)
 def env_creator(env_config):
     # return DummyGym()
@@ -78,17 +78,17 @@ config = {
     },
     "multiagent": {
         "policies": {
-            "policy_01": (None, DummyMAGym().observation_space, DummyMAGym().action_space, {}),
-            "policy_02": (None, DummyMAGym().observation_space, DummyMAGym().action_space, {}),
+            "policy_01": (None, DummyMAGym(len(agent_actions)).observation_space, DummyMAGym(len(agent_actions)).action_space, {}),
+            "policy_02": (None, DummyMAGym(len(agent_actions)).observation_space, DummyMAGym(len(agent_actions)).action_space, {}),
         },
         "policy_mapping_fn": lambda agent_id:
             "policy_01" if agent_id == "agent_0" else "policy_02",
 
-        "policies_to_train": ["policy_01"]
+       # "policies_to_train": ["policy_01"]
     },
-    "rollout_fragment_length": 40,
-    "train_batch_size": 120,
-    "sgd_minibatch_size": 40,
+    "rollout_fragment_length": 80,
+    "train_batch_size": 240,
+    "sgd_minibatch_size": 80,
     "num_gpus": 1,
     # "ignore_worker_failures": True,
     # Set up a separate evaluation worker set for the
@@ -101,17 +101,19 @@ config = {
 }
 
 trainer = PPOTrainer(config=config)
-
+trainer.restore("ray_out/checkpoint_003001/checkpoint-3001")
 # Create our RLlib Trainer.
 for i in range(200000):
     trainer.train()
-    print(i)
+    print("TRAINER TRAINED", i)
     # if i % 1 == 0:
     #     trainer.set_weights({
     #         "policy_02": trainer.get_weights(["policy_01"])["policy_01"], 
     #     })
-    #checkpoint = trainer.save()
-    #print("checkpoint saved at", checkpoint)
+    if i % 100 == 0:
+        checkpoint = trainer.save("ray_out")
+checkpoint = trainer.save("ray_out")   
+   #print("checkpoint saved at", checkpoint)
 # print(trainer.get_weights(["policy_01"]))
 
 # Evaluate the trained Trainer (and render each timestep to the shell's

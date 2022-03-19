@@ -35,7 +35,7 @@ from environment.dummy_spec import DummyMAGym
 from environment.pvpbox_specs import PvpBox
 from environment.wrappers import *
 
-from Agent import Agent
+from ray import tune
 
 #import pyspiel
 #from open_spiel.python.rl_environment import Environment
@@ -99,20 +99,26 @@ config = {
     #     "render_env": True,
     # }
 }
+analysis = tune.run(
+    ppo.PPOTrainer,
+    config=config,
+    local_dir="ray_out",
+    stop={"episode_reward_mean": 50},
+)
 
-trainer = PPOTrainer(config=config)
-trainer.restore("ray_out/checkpoint_003001/checkpoint-3001")
-# Create our RLlib Trainer.
-for i in range(200000):
-    trainer.train()
-    print("TRAINER TRAINED", i)
-    # if i % 1 == 0:
-    #     trainer.set_weights({
-    #         "policy_02": trainer.get_weights(["policy_01"])["policy_01"], 
-    #     })
-    if i % 100 == 0:
-        checkpoint = trainer.save("ray_out")
-checkpoint = trainer.save("ray_out")   
+# trainer = PPOTrainer(config=config)
+# trainer.restore("ray_out/checkpoint_003001/checkpoint-3001")
+# # Create our RLlib Trainer.
+# for i in range(200000):
+#     trainer.train()
+#     print("TRAINER TRAINED", i)
+#     # if i % 1 == 0:
+#     #     trainer.set_weights({
+#     #         "policy_02": trainer.get_weights(["policy_01"])["policy_01"], 
+#     #     })
+#     if i % 100 == 0:
+#         checkpoint = trainer.save("ray_out")
+# checkpoint = trainer.save("ray_out")   
    #print("checkpoint saved at", checkpoint)
 # print(trainer.get_weights(["policy_01"]))
 

@@ -15,6 +15,7 @@ import time
 # thanks ray...
 from environment.pvpbox_specs import PvpBox
 
+
 from ray.rllib.env.multi_agent_env import MultiAgentEnv
 import threading
 threadLock = threading.Lock()
@@ -99,12 +100,12 @@ class OneVersusOneWrapper(MultiAgentEnv):
         
         if a0_new_health <= 20 or a1_new_health <= 20 or done or self.steps >= self.MAX_STEPS:
             # extra reward for killing other agent
-            if a0_new_health <= 20:
-                reward["agent_1"] += 10
-                reward["agent_0"] -= 10
-            if a1_new_health <= 20:
-                reward["agent_0"] += 10
-                reward["agent_1"] -= 10
+            # if a0_new_health <= 20:
+            #     reward["agent_1"] += 10
+            #     reward["agent_0"] -= 10
+            # if a1_new_health <= 20:
+            #     reward["agent_0"] += 10
+            #     reward["agent_1"] -= 10
             dones = {"agent_0":True, "agent_1":True, "__all__":True}
         # convert to pytorch and normalize
         new_obs = {}

@@ -1,17 +1,17 @@
-
+import os
 import configparser
 
 config = configparser.RawConfigParser()
-config.read('ray_config.cfg')
-
+#config.read(os.path.join(os.path.dirname(__file__),'ray_config.cfg'))
+config.read("/fs/clip-ml/sschulho/GLADIATOR-Project/training/ray_config.cfg")
 paths = dict(config.items('PATHS'))
-
-import os
+print(paths)
 import sys
 sys.path.append(os.getcwd()) 
 
 sys.path.append("..")
 sys.path.append(paths["glob"])
+sys.path.append(paths["work"])
 import ray
 ray.init(runtime_env={"working_dir": paths["work"]})
 from ray.rllib.agents.ppo import PPOTrainer
@@ -35,7 +35,6 @@ from environment.dummy_spec import DummyMAGym
 from environment.pvpbox_specs import PvpBox
 from environment.wrappers import *
 
-from Agent import Agent
 
 #import pyspiel
 #from open_spiel.python.rl_environment import Environment
@@ -64,7 +63,7 @@ config = {
     "env": "1v1env",
     # Use 2 environment workers (aka "rollout workers") that parallelly
     # collect samples from their own environment clone(s).
-    "num_workers": 0,
+    # "num_workers": 2,
     # Change this to "framework: torch", if you are using PyTorch.
     # Also, use "framework: tf2" for tf2.x eager execution.
     "framework": "torch",
@@ -87,8 +86,8 @@ config = {
     },
     "rollout_fragment_length": 128,
     "train_batch_size": 512,
-    "sgd_minibatch_size": 128
-    # "num_gpus": 1,
+    "sgd_minibatch_size": 128,
+    "num_gpus": 1,
     # "ignore_worker_failures": True,
     # Set up a separate evaluation worker set for the
     # `trainer.evaluate()` call after training (see below).
@@ -103,10 +102,10 @@ config = {
 trainer = PPOTrainer(config=config)
 for i in range(20):
     print(trainer.train())
-    # if i % 1 == 0:
-    #     trainer.set_weights({
-    #         "policy_02": trainer.get_weights(["policy_01"])["policy_01"], 
-    #     })
+    #if i % 1 == 0:
+#	trainer.set_weights({
+#	    "policy_02": trainer.get_weights(["policy_01"])["policy_01"], 
+ #       })
     checkpoint = trainer.save()
     print("checkpoint saved at", checkpoint)
 # print(trainer.get_weights(["policy_01"]))

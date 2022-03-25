@@ -46,6 +46,7 @@ num_actions = len(agent_actions)
 def env_creator(env_config):
     # return DummyGym()
     return OneVersusOneWrapper(SuperviserWrapper(PvpBox(agent_count=2).make(instances=[])), agent_actions)
+            
     # return CartPoleEnv()
     # env = OneVersusOneWrapper(PvpBox(agent_count=2).make(instances=[]))
     # opponent = Agent(Discrete_PPO_net(num_actions), False)
@@ -98,16 +99,22 @@ config = {
     # }
 }
 
-# Create our RLlib Trainer.
 trainer = PPOTrainer(config=config)
-for i in range(20):
-    print(trainer.train())
     #if i % 1 == 0:
 #	trainer.set_weights({
 #	    "policy_02": trainer.get_weights(["policy_01"])["policy_01"], 
  #       })
-    checkpoint = trainer.save()
-    print("checkpoint saved at", checkpoint)
+
+# Create our RLlib Trainer.
+for i in range(200000):
+    trainer.train()
+    print(i)
+    # if i % 1 == 0:
+    #     trainer.set_weights({
+    #         "policy_02": trainer.get_weights(["policy_01"])["policy_01"], 
+    #     })
+    #checkpoint = trainer.save()
+    #print("checkpoint saved at", checkpoint)
 # print(trainer.get_weights(["policy_01"]))
 
 # Evaluate the trained Trainer (and render each timestep to the shell's

@@ -11,9 +11,10 @@ import sys
 sys.path.append(os.getcwd()) 
 
 sys.path.append("..")
+sys.path.append("../..")
 sys.path.append(paths["glob"])
 import ray
-ray.init(runtime_env={"working_dir": paths["work"]})
+ray.init(runtime_env={"working_dir": "/home/sanders/GLADIATOR-Project"})
 from ray.rllib.agents.ppo import PPOTrainer
 from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
@@ -61,6 +62,7 @@ ModelCatalog.register_custom_model("cnet", Discrete_PPO_net)
 
 # Configure the algorithm.
 config = {
+    "log_level": "ERROR",
     # Environment (RLlib understands openAI gym registered strings).
     "env": "1v1env",
     # Use 2 environment workers (aka "rollout workers") that parallelly
@@ -87,9 +89,20 @@ config = {
        # "policies_to_train": ["policy_01"]
     },
     "rollout_fragment_length": 80,
-    "train_batch_size": 240,
+    "train_batch_size": 400,
     "sgd_minibatch_size": 80,
-    "num_gpus": 1,
+    # "num_gpus": 2,
+    "num_workers": 0,
+    "compress_observations": False,
+                "gamma": .99,
+
+
+                "lambda": 0.95,
+                "kl_coeff": 0.5,
+                "clip_rewards": True,
+                "clip_param": 0.1,
+                "vf_clip_param": 10.0,
+                "entropy_coeff": 0.01,
     # "ignore_worker_failures": True,
     # Set up a separate evaluation worker set for the
     # `trainer.evaluate()` call after training (see below).
@@ -100,9 +113,11 @@ config = {
     # }
 }
 analysis = tune.run(
-    ppo.PPOTrainer,
+    "PPO",
+    name="MINE_PPO",
     config=config,
-    local_dir="ray_out",
+    checkpoint_freq=100,
+    local_dir="~/ray_results_minerl",
     stop={"episode_reward_mean": 50},
 )
 

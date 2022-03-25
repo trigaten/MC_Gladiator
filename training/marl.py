@@ -2,7 +2,7 @@
 import configparser
 
 config = configparser.RawConfigParser()
-config.read('ray_config.cfg')
+config.read("/fs/clip-ml/sschulho/GLADIATOR-Project/training/ray_config.cfg")
 
 paths = dict(config.items('PATHS'))
 

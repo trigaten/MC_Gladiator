@@ -1,14 +1,18 @@
-
+import torch
+import torch.nn as nn
 import configparser
-
+print("DEVICES", torch.cuda.device_count())
+print("__________________________")
 config = configparser.RawConfigParser()
-config.read("/fs/clip-ml/sschulho/GLADIATOR-Project/training/ray_config.cfg")
+config.read("/fs/clip-scratch/sschulho/GLADIATOR-Project/training/ray_config.cfg")
+
 
 paths = dict(config.items('PATHS'))
 
 import os
 import sys
 sys.path.append(os.getcwd()) 
+
 
 sys.path.append("..")
 sys.path.append(paths["glob"])
@@ -19,8 +23,6 @@ from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
 from ray.tune.registry import register_env
 from ray.rllib.agents.ppo import PPOTrainer
-import torch
-import torch.nn as nn
 
 
 from ray.rllib.models.torch.torch_modelv2 import TorchModelV2
@@ -36,7 +38,6 @@ from environment.pvpbox_specs import PvpBox
 from environment.wrappers import *
 
 from ray import tune
-
 #import pyspiel
 #from open_spiel.python.rl_environment import Environment
 #from ray.rllib.env.wrappers.open_spiel import OpenSpielEnv
@@ -84,13 +85,13 @@ config = {
         "policy_mapping_fn": lambda agent_id:
             "policy_01" if agent_id == "agent_0" else "policy_02",
 
-       # "policies_to_train": ["policy_01"]
+       "policies_to_train": ["policy_01"]
     },
     "rollout_fragment_length": 80,
     "train_batch_size": 240,
     "sgd_minibatch_size": 80,
     "num_gpus": 1,
-    # "ignore_worker_failures": True,
+    "ignore_worker_failures": True,
     # Set up a separate evaluation worker set for the
     # `trainer.evaluate()` call after training (see below).
     # "evaluation_num_workers": 1,
@@ -100,12 +101,13 @@ config = {
     # }
 }
 analysis = tune.run(
-    ppo.PPOTrainer,
+    "PPO",
+    name="MINE_PPO",
     config=config,
+    #checkpoint_freq=100,
     local_dir="ray_out",
-    stop={"episode_reward_mean": 50},
+    #stop={"episode_reward_mean": 50},
 )
-
 # trainer = PPOTrainer(config=config)
 # trainer.restore("ray_out/checkpoint_003001/checkpoint-3001")
 # # Create our RLlib Trainer.

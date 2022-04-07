@@ -3,4 +3,4 @@
 - date: January 15th 2022
   info: Added ChatAction handler to MineRL. Can now execute Minecraft Commands!, PR submitted
 - date: April 7th 2022
-  info: 1 episode a minute on 2080 (bad)
+  info: 1 episode a minute on 2080ti, 5 cpus (bad)

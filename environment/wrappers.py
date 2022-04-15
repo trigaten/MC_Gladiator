@@ -36,7 +36,7 @@ class OneVersusOneWrapper(MultiAgentEnv):
         self.action_space = spaces.Discrete(len(actions))
         self.observation_space = spaces.Box(0, 255, [3, 64, 64])
         self.START_HEALTH = 40
-        self.MAX_STEPS = 2000
+        self.MAX_STEPS = 200
         self.a0_health = self.START_HEALTH
         self.a1_health = self.START_HEALTH
         self.steps = 0

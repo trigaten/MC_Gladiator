@@ -47,3 +47,6 @@ class DeepQNet(TorchModelV2):
         base_out = self.CNN(input)
         values = self.values(base_out)
         return values
+
+    def forward(self, input):
+        return self.get_q_values(input)

@@ -1,3 +1,4 @@
+
 import torch
 import torch.nn as nn
 import configparser
@@ -23,6 +24,7 @@ from ray.tune.registry import register_env
 from ray.rllib.agents.dqn import dqn
 
 
+from ray.rllib.models.catalog import MODEL_DEFAULTS
 
 from ray.rllib.models.torch.torch_modelv2 import TorchModelV2
 from ray.rllib.models.torch.misc import normc_initializer, same_padding, \
@@ -56,8 +58,23 @@ def env_creator(env_config):
 register_env("1v1env", env_creator)
 import ray
 from DQN import DeepQNet
+
+model = ModelCatalog.get_model_v2(
+    obs_space=DummyMAGym(len(agent_actions)).observation_space,
+    action_space=DummyMAGym(len(agent_actions)).action_space,
+    num_outputs=num_actions,
+    model_config={ "custom_model": DeepQNet},
+    # framework=args.framework,
+    # Providing the `model_interface` arg will make the factory
+    # wrap the chosen default model with our new model API class
+    # (DuelingQModel). This way, both `forward` and `get_q_values`
+    # are available in the returned class.
+    model_interface=DeepQNet,
+    name="cnet",
+)
+
 # ModelCatalog.register_custom_model("cnet", Net)
-ModelCatalog.register_custom_model("cnet", DeepQNet)
+ModelCatalog.register_custom_model("cnet", model)
 
 # Configure the algorithm.
 config = dqn.DEFAULT_CONFIG.copy()

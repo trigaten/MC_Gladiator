@@ -1,3 +1,4 @@
+
 import torch
 import torch.nn as nn
 import configparser
@@ -8,22 +9,22 @@ config.read("/fs/clip-scratch/sschulho/GLADIATOR-Project/training/ray_config.cfg
 
 
 paths = dict(config.items('PATHS'))
-print(paths)
+
+import os
 import sys
 sys.path.append(os.getcwd()) 
 
 
 sys.path.append("..")
 sys.path.append(paths["glob"])
-sys.path.append(paths["work"])
 import ray
 ray.init(runtime_env={"working_dir": paths["work"]})
-from ray.rllib.agents.ppo import PPOTrainer
-from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
 from ray.tune.registry import register_env
-from ray.rllib.agents.ppo import PPOTrainer
+from ray.rllib.agents.dqn import dqn
 
+
+from ray.rllib.models.catalog import MODEL_DEFAULTS
 
 from ray.rllib.models.torch.torch_modelv2 import TorchModelV2
 from ray.rllib.models.torch.misc import normc_initializer, same_padding, \
@@ -55,54 +56,58 @@ def env_creator(env_config):
     # env = OpponentStepWrapper(env, opponent, agent_actions)
 
 register_env("1v1env", env_creator)
+import ray
+from DQN import DeepQNet
 
-from model import Discrete_PPO_net
+model = ModelCatalog.get_model_v2(
+    obs_space=DummyMAGym(len(agent_actions)).observation_space,
+    action_space=DummyMAGym(len(agent_actions)).action_space,
+    num_outputs=num_actions,
+    model_config={ "custom_model": DeepQNet},
+    # framework=args.framework,
+    # Providing the `model_interface` arg will make the factory
+    # wrap the chosen default model with our new model API class
+    # (DuelingQModel). This way, both `forward` and `get_q_values`
+    # are available in the returned class.
+    model_interface=DeepQNet,
+    name="cnet",
+)
+
 # ModelCatalog.register_custom_model("cnet", Net)
-ModelCatalog.register_custom_model("cnet", Discrete_PPO_net)
+ModelCatalog.register_custom_model("cnet", model)
 
 # Configure the algorithm.
-config = {
-    # Environment (RLlib understands openAI gym registered strings).
-    "env": "1v1env",
-    # Use 2 environment workers (aka "rollout workers") that parallelly
-    # collect samples from their own environment clone(s).
-    # "num_workers": 2,
-    # Change this to "framework: torch", if you are using PyTorch.
-    # Also, use "framework: tf2" for tf2.x eager execution.
-    "framework": "torch",
-    # Tweak the default model provided automatically by RLlib,
-    # given the environment's observation- and action spaces.
-    "model": {
-        "custom_model": "cnet",
-        # Extra kwargs to be passed to your model's c'tor.
-        "custom_model_config": {},
-    },
-    "multiagent": {
-        "policies": {
-            "policy_01": (None, DummyMAGym(len(agent_actions)).observation_space, DummyMAGym(len(agent_actions)).action_space, {}),
-            "policy_02": (None, DummyMAGym(len(agent_actions)).observation_space, DummyMAGym(len(agent_actions)).action_space, {}),
-        },
-        "policy_mapping_fn": lambda agent_id:
-            "policy_01" if agent_id == "agent_0" else "policy_02",
-
-       "policies_to_train": ["policy_01"]
-    },
-    "rollout_fragment_length": 80,
-    "train_batch_size": 240,
-    "sgd_minibatch_size": 80,
-    "num_gpus": 1,
-    "ignore_worker_failures": True,
-    # Set up a separate evaluation worker set for the
-    # `trainer.evaluate()` call after training (see below).
-    # "evaluation_num_workers": 1,
-    # # Only for evaluation runs, render the env.
-    # "evaluation_config": {
-    #     "render_env": True,
-    # }
+config = dqn.DEFAULT_CONFIG.copy()
+config["n_step"] = 5
+config["noisy"] = True 
+config["num_atoms"] = 2
+config["v_min"] = 0
+config["v_max"] = 10
+config["framework"] = "torch"
+config["env"] = "1v1env"
+# "env": "1v1env",
+config["model"] = \
+{
+    "custom_model": "cnet",
+    # Extra kwargs to be passed to your model's c'tor.
+    "custom_model_config": {},
 }
+
+config["multiagent"] = \
+{
+    "policies": {
+        "policy_01": (None, DummyMAGym(len(agent_actions)).observation_space, DummyMAGym(len(agent_actions)).action_space, {}),
+        "policy_02": (None, DummyMAGym(len(agent_actions)).observation_space, DummyMAGym(len(agent_actions)).action_space, {}),
+    },
+    "policy_mapping_fn": lambda agent_id:
+        "policy_01" if agent_id == "agent_0" else "policy_02",
+
+    "policies_to_train": ["policy_01"]
+}
+    
 analysis = tune.run(
-    "PPO",
-    name="MINE_PPO",
+    "DQN",
+    name="MINE_DQN",
     config=config,
     #checkpoint_freq=100,
     local_dir="ray_out",

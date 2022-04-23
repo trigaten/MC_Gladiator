@@ -15,6 +15,7 @@ import time
 # thanks ray...
 from environment.pvpbox_specs import PvpBox
 
+
 from ray.rllib.env.multi_agent_env import MultiAgentEnv
 import threading
 threadLock = threading.Lock()
@@ -32,10 +33,10 @@ class OneVersusOneWrapper(MultiAgentEnv):
         super().__init__()
         self.env = env
         self.actions = actions
-        self.action_space = spaces.Discrete(3)
+        self.action_space = spaces.Discrete(len(actions))
         self.observation_space = spaces.Box(0, 255, [3, 64, 64])
         self.START_HEALTH = 40
-        self.MAX_STEPS = 400
+        self.MAX_STEPS = 200
         self.a0_health = self.START_HEALTH
         self.a1_health = self.START_HEALTH
         self.steps = 0
@@ -70,16 +71,17 @@ class OneVersusOneWrapper(MultiAgentEnv):
         # update stored health for both agents
         a0_new_health = obs["agent_0"]["life_stats"]["life"]
         a1_new_health = obs["agent_1"]["life_stats"]["life"]
-
+        a0_reward = 0
+        a1_reward = 0
         # negative reward upon decrease in agents' health
         # if new health is greater this will be a positive reward (this wont happen as often)
-        a0_reward = a0_new_health - self.a0_health
-        a1_reward = a1_new_health - self.a1_health
+        a0_health_delta = a0_new_health - self.a0_health
+        a1_health_delta = a1_new_health - self.a1_health
 
         # positive reward upon decrease in other agents' health (this would 
         # mean that the agent has damaged the other, which is good) 
-        a0_reward -= a1_reward
-        a1_reward -= a0_reward
+        a0_reward += max(-a1_health_delta, 0)
+        a1_reward += max(-a0_health_delta, 0)
 
         # set the rewards
         reward = {}
@@ -98,12 +100,12 @@ class OneVersusOneWrapper(MultiAgentEnv):
         
         if a0_new_health <= 20 or a1_new_health <= 20 or done or self.steps >= self.MAX_STEPS:
             # extra reward for killing other agent
-            if a0_new_health <= 20:
-                reward["agent_1"] += 10
-                reward["agent_0"] -= 10
-            if a1_new_health <= 20:
-                reward["agent_0"] += 10
-                reward["agent_1"] -= 10
+            # if a0_new_health <= 20:
+            #     reward["agent_1"] += 10
+            #     reward["agent_0"] -= 10
+            # if a1_new_health <= 20:
+            #     reward["agent_0"] += 10
+            #     reward["agent_1"] -= 10
             dones = {"agent_0":True, "agent_1":True, "__all__":True}
         # convert to pytorch and normalize
         new_obs = {}
@@ -120,7 +122,8 @@ class OneVersusOneWrapper(MultiAgentEnv):
 
     def reset(self):
         # reset basic info
-        print(self.steps)
+        print("res", self.steps)
+        print(self.resets)
         self.steps = 0
         self.a0_health = self.START_HEALTH
         self.a1_health = self.START_HEALTH

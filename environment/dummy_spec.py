@@ -56,10 +56,10 @@ class DummyGym(gym.Env):
 
 class DummyMAGym(MultiAgentEnv):
     """corresponds to real gym formatting"""
-    def __init__(self, *args, **kwargs):
+    def __init__(self, action_space, *args, **kwargs):
         # self.action_space = spaces.Discrete(2)
         self.observation_space = spaces.Box(0, 255, [3, 64, 64])
-        self.action_space = spaces.Discrete(3)
+        self.action_space = spaces.Discrete(action_space)
 
     def reset(self):
         obs = {}

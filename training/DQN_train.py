@@ -5,7 +5,8 @@ import configparser
 print("DEVICES", torch.cuda.device_count())
 print("__________________________")
 config = configparser.RawConfigParser()
-config.read("/fs/clip-scratch/sschulho/GLADIATOR-Project/training/ray_config.cfg")
+# config.read("/fs/clip-scratch/sschulho/GLADIATOR-Project/training/ray_config.cfg")
+config.read("ray_config.cfg")
 
 
 paths = dict(config.items('PATHS'))
@@ -59,22 +60,22 @@ register_env("1v1env", env_creator)
 import ray
 from DQN import DeepQNet
 
-model = ModelCatalog.get_model_v2(
-    obs_space=DummyMAGym(len(agent_actions)).observation_space,
-    action_space=DummyMAGym(len(agent_actions)).action_space,
-    num_outputs=num_actions,
-    model_config={ "custom_model": DeepQNet},
-    # framework=args.framework,
-    # Providing the `model_interface` arg will make the factory
-    # wrap the chosen default model with our new model API class
-    # (DuelingQModel). This way, both `forward` and `get_q_values`
-    # are available in the returned class.
-    model_interface=DeepQNet,
-    name="cnet",
-)
+# model = ModelCatalog.get_model_v2(
+#     obs_space=DummyMAGym(len(agent_actions)).observation_space,
+#     action_space=DummyMAGym(len(agent_actions)).action_space,
+#     num_outputs=num_actions,
+#     model_config={ "custom_model": DeepQNet},
+#     # framework=args.framework,
+#     # Providing the `model_interface` arg will make the factory
+#     # wrap the chosen default model with our new model API class
+#     # (DuelingQModel). This way, both `forward` and `get_q_values`
+#     # are available in the returned class.
+#     model_interface=DeepQNet,
+#     name="cnet",
+# )
 
 # ModelCatalog.register_custom_model("cnet", Net)
-ModelCatalog.register_custom_model("cnet", model)
+ModelCatalog.register_custom_model("cnet", DeepQNet)
 
 # Configure the algorithm.
 config = dqn.DEFAULT_CONFIG.copy()

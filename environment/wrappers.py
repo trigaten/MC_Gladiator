@@ -153,7 +153,7 @@ class OneVersusOneWrapper(MultiAgentEnv):
         
         self.resets+=1
         print("RESETS", self.resets)
-       
+        print(new_obs)
         return new_obs
 
 class SuperviserWrapper(gym.Wrapper):

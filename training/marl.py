@@ -4,9 +4,9 @@ import configparser
 print("DEVICES", torch.cuda.device_count())
 print("__________________________")
 config = configparser.RawConfigParser()
-config.read("/fs/clip-scratch/sschulho/GLADIATOR-Project/training/ray_config.cfg")
-
-
+config.read("/home/startupshell/Desktop/Sander/GLADIATOR-Project/ray_config.cfg")
+print(config)
+import os
 paths = dict(config.items('PATHS'))
 print(paths)
 import sys

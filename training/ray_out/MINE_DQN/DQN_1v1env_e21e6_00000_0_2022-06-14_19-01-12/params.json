@@ -1,7 +1,13 @@
 {
+  "buffer_size": 100000,
+  "compress_observations": true,
+  "double_q": false,
+  "dueling": false,
   "env": "1v1env",
   "framework": "torch",
-  "ignore_worker_failures": true,
+  "gamma": 0.99,
+  "hiddens": [],
+  "learning_starts": 1000,
   "model": {
     "custom_model": "cnet",
     "custom_model_config": {}
@@ -24,10 +30,9 @@
     "policies_to_train": [
       "policy_01"
     ],
-    "policy_mapping_fn": "<function <lambda> at 0x7f6ab73f4ef0>"
+    "policy_mapping_fn": "<function <lambda> at 0x7f1aa4235e60>"
   },
-  "num_gpus": 1,
-  "rollout_fragment_length": 80,
-  "sgd_minibatch_size": 80,
-  "train_batch_size": 240
+  "num_gpus": 2,
+  "num_workers": 2,
+  "train_batch_size": 256
 }

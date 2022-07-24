@@ -60,12 +60,16 @@ class DummyMAGym(MultiAgentEnv):
         # self.action_space = spaces.Discrete(2)
         self.observation_space = spaces.Box(0, 255, [3, 64, 64])
         self.action_space = spaces.Discrete(action_space)
+        self._agent_ids = ["agent_0", "agent_1"]
+        
+    def get_agent_ids(self):
+        return self._agent_ids
 
     def reset(self):
         obs = {}
         obs["agent_0"] = np.random.randint(0, 255, (3, 64, 64), dtype="uint8")
         obs["agent_1"] = np.random.randint(0, 255, (3, 64, 64), dtype="uint8")
-
+        print(obs)
         return obs
 
     def step(self, action):
@@ -80,3 +84,7 @@ class DummyMAGym(MultiAgentEnv):
         dones["agent_1"] = False
         dones["__all__"] = random.random() > 0.9
         return obs, rewards, dones,{}
+
+if __name__ == "__main__":
+    env = DummyGym(7)
+    print(env.action_space_sample())

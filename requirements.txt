@@ -1,0 +1,6 @@
+# python 3.7 recommended
+
+
+ipykernel
+# minerl with chat action
+git+https://github.com/minerllabs/minerl.git@e64b99ca012a9c0d4abb46bdd74f61a4946c2586

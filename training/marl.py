@@ -11,7 +11,9 @@ paths = dict(config.items('PATHS'))
 print(paths)
 import sys
 sys.path.append(os.getcwd()) 
-
+sys.path.append("/home/startupshell/Desktop/Sander/GLADIATOR-Project/environment")
+import ray
+ray.init(runtime_env={"working_dir": "/home/startupshell/Desktop/Sander/GLADIATOR-Project"})
 
 sys.path.append("..")
 sys.path.append(paths["glob"])

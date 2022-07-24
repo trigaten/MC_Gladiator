@@ -14,9 +14,11 @@ class DeepQNet(TorchModelV2):
         # config[model][fcnet_hiddens]] AND set no_last_linear=True, but
         # this seems more tedious as you will have to explain users of this
         # class that num_outputs is NOT the size of your Q-output layer.
+        """NOTE: I BELIEVE above describes error: https://docs.ray.io/en/latest/rllib/rllib-models.html"""
         super(DeepQNet, self).__init__(
             obs_space, action_space, None, model_config, name
         )
+        self.no_last_linear = True
         self.hidden_dim = 1024
         # Now: self.num_outputs contains the last layer's size, which
         # we can use to construct the dueling head (see torch: SlimFC
@@ -43,10 +45,18 @@ class DeepQNet(TorchModelV2):
             nn.Linear(self.hidden_dim, 7, bias=False), 
         )
 
-    def get_q_values(self, input):
-        base_out = self.CNN(input)
-        values = self.values(base_out)
-        return values
+    # def get_q_values(self, input):
+    #     base_out = self.CNN(input)
+    #     values = self.values(base_out)
+    #     return values
 
-    def forward(self, input):
-        return self.get_q_values(input)
+    def forward(self, input_dict, state, seq_lens):
+        batch_size, _, _, _ = input_dict["obs"].shape
+        CNN_out = self.CNN(input_dict["obs"].float())
+        # print("CNN", CNN_out.shape)
+        flat = CNN_out.view((batch_size, 128*4*4))
+        # print("FLAT", flat.shape)
+        values = self.values(flat)
+        # print("VALUES", values.shape)
+        return values, []
+        # return torch.zeros(batch_size, 7, device="cuda"), []

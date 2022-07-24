@@ -1,0 +1,63 @@
+Failure # 1 (occurred at 2022-05-21_06-33-46)
+Traceback (most recent call last):
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/tune/ray_trial_executor.py", line 901, in get_next_executor_event
+    future_result = ray.get(ready_future)
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/_private/client_mode_hook.py", line 105, in wrapper
+    return func(*args, **kwargs)
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/worker.py", line 1809, in get
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::DQNTrainer.train()[39m (pid=1532682, ip=10.104.57.75, repr=DQNTrainer)
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/tune/trainable.py", line 349, in train
+    result = self.step()
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/rllib/agents/trainer.py", line 1088, in step
+    raise e
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/rllib/agents/trainer.py", line 1074, in step
+    step_attempt_results = self.step_attempt()
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/rllib/agents/trainer.py", line 1155, in step_attempt
+    step_results = self._exec_plan_or_training_iteration_fn()
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/rllib/agents/trainer.py", line 2174, in _exec_plan_or_training_iteration_fn
+    results = next(self.train_exec_impl)
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 779, in __next__
+    return next(self.built_iterator)
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 807, in apply_foreach
+    for item in it:
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 869, in apply_filter
+    for item in it:
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 869, in apply_filter
+    for item in it:
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 807, in apply_foreach
+    for item in it:
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 869, in apply_filter
+    for item in it:
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 1108, in build_union
+    item = next(it)
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 779, in __next__
+    return next(self.built_iterator)
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 807, in apply_foreach
+    for item in it:
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 807, in apply_foreach
+    for item in it:
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 807, in apply_foreach
+    for item in it:
+  [Previous line repeated 1 more time]
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 492, in base_iterator
+    yield ray.get(futures, timeout=timeout)
+ray.exceptions.RayTaskError(TypeError): [36mray::RolloutWorker.par_iter_next()[39m (pid=1532816, ip=10.104.57.75, repr=<ray.rllib.evaluation.rollout_worker.RolloutWorker object at 0x7fe69924e610>)
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/util/iter.py", line 1186, in par_iter_next
+    return next(self.local_it)
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/rllib/evaluation/rollout_worker.py", line 404, in gen_rollouts
+    yield self.sample()
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/rllib/evaluation/rollout_worker.py", line 815, in sample
+    batches = [self.input_reader.next()]
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/rllib/evaluation/sampler.py", line 116, in next
+    batches = [self.get_data()]
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/rllib/evaluation/sampler.py", line 289, in get_data
+    item = next(self._env_runner)
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/rllib/evaluation/sampler.py", line 729, in _env_runner
+    base_env.send_actions(actions_to_send)
+  File "/home/startupshell/miniconda3/envs/minerl/lib/python3.7/site-packages/ray/rllib/env/multi_agent_env.py", line 516, in send_actions
+    obs, rewards, dones, infos = env.step(agent_dict)
+  File "/tmp/ray/session_2022-05-20_15-30-33_941497_1532424/runtime_resources/working_dir_files/_ray_pkg_31b2151baca0c63e/environment/wrappers.py", line 79, in step
+    a0_new_health = obs["agent_0"]["life_stats"]["life"]
+TypeError: 'NoneType' object is not subscriptable
+

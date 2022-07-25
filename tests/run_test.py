@@ -1,7 +1,7 @@
 # from typing import Dict
 from collections import OrderedDict
 from minerl.herobraine.hero.spaces import Dict, Discrete, Box, Text
-from MCGladiator.envs import PvpBox
+from mcgladiator.envs import PvpBox
 
 class TestEnvironment():
     env = PvpBox(agent_count=2).make(instances=[])

@@ -24,17 +24,25 @@ author = 'Sander Schulhoff'
 release = "0.0.1"
 
 
+
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
+
+import sphinx_rtd_theme
+
 extensions = [
-    'sphinx.ext.napoleon',
+    'sphinx_rtd_theme',
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
     'sphinx.ext.githubpages',
 ]
+
+html_theme = "sphinx_rtd_theme"
+
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

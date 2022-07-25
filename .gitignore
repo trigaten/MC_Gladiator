@@ -3,3 +3,4 @@ logs
 .vscode
 ray_config.cfg
 *.egg-info
+build/

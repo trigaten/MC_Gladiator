@@ -1,7 +1,3 @@
-"""
-Adapted from https://github.com/minerllabs/minerl/blob/dev/minerl/herobraine/env_specs/treechop_specs.py
-"""
-
 __author__ = "Sander Schulhoff"
 __email__ = "sanderschulhoff@gmail.com"
 
@@ -13,13 +9,17 @@ from typing import List
 import minerl.herobraine.hero.handlers as handlers
 
 PVPBOX_DOC = """
-In pvp box, two agents fight in a boxed-in area
+A minecraft environment in which agents spawn within a small,
+boxed in area and fight against each other.
+
+Adapted from https://github.com/minerllabs/minerl/blob/dev/minerl/herobraine/env_specs/treechop_specs.py
 """
 
 PVPBOX_LENGTH = 80000
 
-class PvpBox(SimpleEmbodimentEnvSpec):
 
+class PvpBox(SimpleEmbodimentEnvSpec):
+    """In pvp box, two agents fight in a boxed-in area"""
     def __init__(self, *args, **kwargs):
         if 'name' not in kwargs:
             kwargs['name'] = 'PvpBox-v0'

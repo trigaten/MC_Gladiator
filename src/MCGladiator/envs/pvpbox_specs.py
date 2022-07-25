@@ -86,7 +86,7 @@ class PvpBox(SimpleEmbodimentEnvSpec):
     def create_server_quit_producers(self) -> List[Handler]:
         """Dont quit"""
         return [
-            handlers.ServerQuitFromTimeUp(5000000)
+            handlers.ServerQuitFromTimeUp(500000000)
         ]
 
     def create_server_decorators(self) -> List[Handler]:

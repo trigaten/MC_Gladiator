@@ -15,6 +15,7 @@ import time
 # thanks ray...
 from environment.pvpbox_specs import PvpBox
 
+
 from ray.rllib.env.multi_agent_env import MultiAgentEnv
 import threading
 threadLock = threading.Lock()
@@ -32,13 +33,15 @@ class OneVersusOneWrapper(MultiAgentEnv):
         super().__init__()
         self.env = env
         self.actions = actions
-        self.action_space = spaces.Discrete(3)
+        self.action_space = spaces.Discrete(len(actions))
         self.observation_space = spaces.Box(0, 255, [3, 64, 64])
         self.START_HEALTH = 40
-        self.MAX_STEPS = 400
+        self.MAX_STEPS = 600
+        self.max_episode_steps = 600
         self.a0_health = self.START_HEALTH
         self.a1_health = self.START_HEALTH
         self.steps = 0
+
         # count how many times the env has reset
         self.resets = 0
         self.mc_init_commands = [
@@ -51,6 +54,13 @@ class OneVersusOneWrapper(MultiAgentEnv):
             "/tp MineRLAgent0 0 5 -2",
             "/tp MineRLAgent1 0 5 2 180 0",
         ]
+        self._agent_ids = {"agent_0", "agent_1"}
+        
+    def get_agent_ids(self):
+        return self._agent_ids
+
+    def action_space_sample(self):
+        return {"agent_0":1,"agent_1":0}
 
     def step(self, actions):
         dual_action = {"agent_0":{"camera":[0,0]},"agent_1":{"camera":[0,0]}}
@@ -67,28 +77,38 @@ class OneVersusOneWrapper(MultiAgentEnv):
             print(obs)
             obs = self.env.reboot_env()
         
-        # update stored health for both agents
-        a0_new_health = obs["agent_0"]["life_stats"]["life"]
-        a1_new_health = obs["agent_1"]["life_stats"]["life"]
+        a0_new_health = 40
+        a1_new_health = 40
+        # attempt to deal with issue when life_stats not in the obs
+        try:
+            # update stored health for both agents
+            a0_new_health = obs["agent_0"]["life_stats"]["life"]
+            a1_new_health = obs["agent_1"]["life_stats"]["life"]
+            
+            a0_reward = 0
+            a1_reward = 0
+            # negative reward upon decrease in agents' health
+            # if new health is greater this will be a positive reward (this wont happen as often)
+            a0_health_delta = a0_new_health - self.a0_health
+            a1_health_delta = a1_new_health - self.a1_health
 
-        # negative reward upon decrease in agents' health
-        # if new health is greater this will be a positive reward (this wont happen as often)
-        a0_reward = a0_new_health - self.a0_health
-        a1_reward = a1_new_health - self.a1_health
-
-        # positive reward upon decrease in other agents' health (this would 
-        # mean that the agent has damaged the other, which is good) 
-        a0_reward -= a1_reward
-        a1_reward -= a0_reward
+            # positive reward upon decrease in other agents' health (this would 
+            # mean that the agent has damaged the other, which is good) 
+            a0_reward += max(-a1_health_delta, 0)
+            a1_reward += max(-a0_health_delta, 0)
+        except Exception:
+            a0_reward = 0
+            a1_reward = 0
+            # update agent healths
+            self.a0_health = self.START_HEALTH
+            self.a1_health = self.START_HEALTH
 
         # set the rewards
         reward = {}
         reward["agent_0"] = a0_reward
         reward["agent_1"] = a1_reward
 
-        # update agent healths
-        self.a0_health = a0_new_health
-        self.a1_health = a1_new_health
+        
 
         # dont need to return health data as obs since we already used it
         # for the reward signal
@@ -98,12 +118,12 @@ class OneVersusOneWrapper(MultiAgentEnv):
         
         if a0_new_health <= 20 or a1_new_health <= 20 or done or self.steps >= self.MAX_STEPS:
             # extra reward for killing other agent
-            if a0_new_health <= 20:
-                reward["agent_1"] += 10
-                reward["agent_0"] -= 10
-            if a1_new_health <= 20:
-                reward["agent_0"] += 10
-                reward["agent_1"] -= 10
+            # if a0_new_health <= 20:
+            #     reward["agent_1"] += 10
+            #     reward["agent_0"] -= 10
+            # if a1_new_health <= 20:
+            #     reward["agent_0"] += 10
+            #     reward["agent_1"] -= 10
             dones = {"agent_0":True, "agent_1":True, "__all__":True}
         # convert to pytorch and normalize
         new_obs = {}
@@ -120,7 +140,6 @@ class OneVersusOneWrapper(MultiAgentEnv):
 
     def reset(self):
         # reset basic info
-        print(self.steps)
         self.steps = 0
         self.a0_health = self.START_HEALTH
         self.a1_health = self.START_HEALTH
@@ -133,6 +152,7 @@ class OneVersusOneWrapper(MultiAgentEnv):
             for mc_command in self.mc_init_commands:
                 action = {"agent_0":{"chat":mc_command, "camera":[0,0]},"agent_1":{"camera":[0,0]}}
                 obs, reward, done, info = self.env.step(action)
+
         for mc_command in self.mc_reset_commands:
             obs, reward, done, info = self.env.step({"agent_0":{"chat":mc_command, "camera":[0,0]},"agent_1":{"camera":[0,0]}})
             if done:
@@ -150,7 +170,6 @@ class OneVersusOneWrapper(MultiAgentEnv):
         
         self.resets+=1
         print("RESETS", self.resets)
-       
         return new_obs
 
 class SuperviserWrapper(gym.Wrapper):
@@ -224,5 +243,6 @@ class SuperviserWrapper(gym.Wrapper):
             info = {}
             # Re-create the environment
             self.reboot_env()
-
+        if info and "agent_0" in info and info["agent_0"]:
+            print("INFO", info)
         return obs, reward, done, info

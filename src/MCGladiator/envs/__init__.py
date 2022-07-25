@@ -1,0 +1,1 @@
+from MCGladiator.envs.pvpbox_specs import *

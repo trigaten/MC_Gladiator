@@ -18,6 +18,7 @@ class BaseWrapper(gym.Wrapper):
         self.env = env
         self.simple_actions = simple_actions
         self.steps = 0
+        self.agent_healths = {"agent_0":20, "agent_1":20}
         if simple_actions:
             self.actions = [("attack", 1), ("left", 1), ("back", 1), ("right", 1), ("forward", 1), ("camera", [0,15]), ("camera", [0,-15])]
 
@@ -31,28 +32,22 @@ class BaseWrapper(gym.Wrapper):
         self._agent_ids = {"agent_0", "agent_1"}
         
     def get_noop(self):
-        {"agent_0":{"camera":[0,0]},"agent_1":{"camera":[0,0]}}
+        return {"agent_0":{"camera":[0,0]},"agent_1":{"camera":[0,0]}}
 
     def compute_rewards(self, a0_new_health:float, a1_new_health:float):
-        """Compute reward based on health change"""
-        reward = {}
-        reward["agent_0"] = a0_new_health - self.a0_health
-        reward["agent_1"] = a1_new_health - self.a1_health
-          
-        # negative reward upon decrease in agents' health
-        # if new health is greater this will be a positive reward (this wont happen as often)
-        a0_health_delta = a0_new_health - self.a0_health
-        a1_health_delta = a1_new_health - self.a1_health
+        """Compute reward based on health delta.
+        
+        Agents are inversely rewarded for the opponents' change in health.
+        """
 
-        # positive reward upon decrease in other agents' health (this would 
-        # mean that the agent has damaged the other, which is good) 
-        a0_reward += max(-a1_health_delta, 0)
-        a1_reward += max(-a0_health_delta, 0)
-
-        # set the rewards
         reward = {}
-        reward["agent_0"] = a0_reward
-        reward["agent_1"] = a1_reward
+        reward["agent_0"] = self.agent_healths["agent_1"] - a1_new_health
+        reward["agent_1"] = self.agent_healths["agent_0"] - a0_new_health
+
+        # normalize rewards by iron sword critical hit damage
+        critical_hit_damage = 1.5 * 6
+        reward["agent_0"] /= critical_hit_damage
+        reward["agent_1"] /= critical_hit_damage
 
         return reward
 

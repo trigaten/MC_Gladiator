@@ -8,15 +8,7 @@ from typing import List
 
 import minerl.herobraine.hero.handlers as handlers
 
-PVPBOX_DOC = """
-A minecraft environment in which agents spawn within a small,
-boxed in area and fight against each other.
-
-Adapted from https://github.com/minerllabs/minerl/blob/dev/minerl/herobraine/env_specs/treechop_specs.py
-"""
-
 PVPBOX_LENGTH = 80000
-
 
 class PvpBox(SimpleEmbodimentEnvSpec):
     """
@@ -24,7 +16,10 @@ class PvpBox(SimpleEmbodimentEnvSpec):
     boxed in area and fight against each other.
 
     Adapted from https://github.com/minerllabs/minerl/blob/dev/minerl/herobraine/env_specs/treechop_specs.py
-
+    
+    Args:
+        agent_count: The number of agents to spawn in the environment (should be 2).
+        
     """
     def __init__(self, *args, **kwargs):
         if 'name' not in kwargs:
@@ -116,4 +111,4 @@ class PvpBox(SimpleEmbodimentEnvSpec):
         return folder == 'survivalpvpbox'
 
     def get_docstring(self):
-        return PVPBOX_DOC
+        return self.__doc__

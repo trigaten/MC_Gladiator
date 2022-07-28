@@ -1,13 +1,17 @@
 from typing import Dict
 
+import gym
 from gym import spaces
 
-class BaseWrapper():
+class BaseWrapper(gym.Wrapper):
     """Base wrapper for a 1v1 pvp env.
 
     * Calculate rewards based on changes in agents' health.
 
     * Calculate when an agent dies and terminate the episode.
+
+    :param env: The environment to wrap.
+    :param bool simple_actions: Whether to use simple actions or not.
     """
     def __init__(self, env, simple_actions):
         super().__init__()
@@ -61,10 +65,10 @@ class BaseWrapper():
         # if done or a0_new_health <= 0 or a1_new_health <= 0:
         #     dones = {"agent_0":True, "agent_1":True, "__all__":True}
         return dones
-        
+
     """Take a dict of numerical `actions` (e.g. `{"agent_0:2", "agent_1:5"}`) and
     steps the environment with the corresponding MineRL actions"""
-    def step(self, actions:Dict(str, int)):
+    def step(self, actions:Dict[str, int]):
         # 1. start with a noop action for 2 agents
         dual_action = self.get_noop()
 

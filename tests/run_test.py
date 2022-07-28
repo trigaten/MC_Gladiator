@@ -18,7 +18,8 @@ class TestEnvironments():
         env.step({"agent_0":{}, "agent_1":{}})
 
     def test_base_wrapper():
-        pass
+        env = PvpBox(agent_count=2).make(instances=[])
+        wrapped_env = BaseWrapper(env, simple_actions=True)
     # def test_wrapped
 
     # action_space = env.action_space

@@ -19,7 +19,7 @@ class BaseWrapper(gym.Wrapper):
         self.simple_actions = simple_actions
         self.steps = 0
         if simple_actions:
-            self.actions = {[("attack", 1), ("left", 1), ("back", 1), ("right", 1), ("forward", 1), ("camera", [0,15]), ("camera", [0,-15])]}
+            self.actions = [("attack", 1), ("left", 1), ("back", 1), ("right", 1), ("forward", 1), ("camera", [0,15]), ("camera", [0,-15])]
 
         # commands to be executed at the reset of the env
         self.reset_commands = [

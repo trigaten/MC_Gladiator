@@ -1,16 +1,25 @@
-# from typing import Dict
-from collections import OrderedDict
 from minerl.herobraine.hero.spaces import Dict, Discrete, Box, Text
-from MCGladiator.envs import PvpBox
 
-class TestEnvironment():
-    env = PvpBox(agent_count=2).make(instances=[])
-    
-    _ = env.reset()
-    # check agent count
-    assert len(env.instances) == 2
-    # check step works
-    env.step({"agent_0":{}, "agent_1":{}})
+from MCGladiator.envs import PvpBox
+from MCGladiator.wrappers import BaseWrapper
+
+class TestEnvironments():
+    def test_base_box_env():
+        env = PvpBox(agent_count=2).make(instances=[])
+        
+        _ = env.reset()
+        # check agent count
+        assert len(env.instances) == 2
+        # check life stats in obs spaces
+        assert "life_stats" in env.observation_space.spaces["agent_0"]
+        assert "life_stats" in env.observation_space.spaces["agent_1"]
+
+        # check step works
+        env.step({"agent_0":{}, "agent_1":{}})
+
+    def test_base_wrapper():
+        pass
+    # def test_wrapped
 
     # action_space = env.action_space
     # OrderedDict([

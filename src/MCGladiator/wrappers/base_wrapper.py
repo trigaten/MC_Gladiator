@@ -32,6 +32,8 @@ class BaseWrapper(gym.Wrapper):
         self._agent_ids = {"agent_0", "agent_1"}
         
     def get_noop(self):
+        """Return an action which does nothing, but sets enough information
+        to allow for MineRL `render()`ing"""
         return {"agent_0":{"camera":[0,0]},"agent_1":{"camera":[0,0]}}
 
     def compute_rewards(self, a0_new_health:float, a1_new_health:float):

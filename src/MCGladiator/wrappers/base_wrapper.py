@@ -14,7 +14,7 @@ class BaseWrapper(gym.Wrapper):
     :param bool simple_actions: Whether to use simple actions or not.
     """
     def __init__(self, env, simple_actions):
-        super().__init__()
+        super().__init__(env)
         self.env = env
         self.simple_actions = simple_actions
         self.steps = 0
@@ -59,11 +59,10 @@ class BaseWrapper(gym.Wrapper):
     def compute_env_dones(self, done:bool, a0_new_health:float, a1_new_health:float):
         dones = {"agent_0":False, "agent_1":False, "__all__":False}
         
-        
         # TODO: this should be the only case of doneness    
         # check if an agent has died
-        # if done or a0_new_health <= 0 or a1_new_health <= 0:
-        #     dones = {"agent_0":True, "agent_1":True, "__all__":True}
+        if done or a0_new_health <= 0 or a1_new_health <= 0:
+            dones = {"agent_0":True, "agent_1":True, "__all__":True}
         return dones
 
     """Take a dict of numerical `actions` (e.g. `{"agent_0:2", "agent_1:5"}`) and

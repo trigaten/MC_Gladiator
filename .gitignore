@@ -2,5 +2,5 @@ __pycache__
 logs
 .vscode
 ray_config.cfg
-*.egg-info
+*.egg*
 build/

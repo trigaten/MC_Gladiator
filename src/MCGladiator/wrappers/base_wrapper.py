@@ -90,15 +90,15 @@ class BaseWrapper(gym.Wrapper):
         dones = self.compute_env_dones(done, a0_new_health, a1_new_health)
 
         # 6. set obs
-        new_obs = {}
-        new_obs["agent_0"] = obs["agent_0"]["pov"]
-        new_obs["agent_1"] = obs["agent_1"]["pov"]
+        pov_obs = {}
+        pov_obs["agent_0"] = obs["agent_0"]["pov"]
+        pov_obs["agent_1"] = obs["agent_1"]["pov"]
 
         # 7. update variables for next step
         self.agent_healths = {"agent_0":a0_new_health, "agent_1":a1_new_health}
         self.steps+= 1
         
-        return new_obs, rewards, dones, info
+        return pov_obs, rewards, dones, info
 
     def reset(self):
         # 1. reset basic info
@@ -126,4 +126,6 @@ class BaseWrapper(gym.Wrapper):
     def get_agent_ids(self):
         return self._agent_ids
 
+    def get_agent_healths(self):
+        return self.agent_healths
     

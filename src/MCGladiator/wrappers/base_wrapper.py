@@ -18,7 +18,7 @@ class BaseWrapper(gym.Wrapper):
         self.env = env
         self.simple_actions = simple_actions
         self.steps = 0
-        self.agent_healths = {"agent_0":20, "agent_1":20}
+        self.agent_healths = self.get_default_healths()
         if simple_actions:
             self.actions = [("attack", 1), ("left", 1), ("back", 1), ("right", 1), ("forward", 1), ("camera", [0,15]), ("camera", [0,-15])]
 
@@ -103,7 +103,7 @@ class BaseWrapper(gym.Wrapper):
     def reset(self):
         # 1. reset basic info
         self.steps = 0
-        self.agent_healths = {"agent_0":20, "agent_1":20}
+        self.agent_healths = self.get_default_healths()
 
         # 2. reset env
         obs = self.env.reset()
@@ -122,6 +122,13 @@ class BaseWrapper(gym.Wrapper):
         new_obs["agent_1"] = obs["agent_1"]["pov"]
         
         return new_obs
+
+    def get_default_healths(self):
+        default_health = self.get_default_health()
+        return {"agent_0":default_health, "agent_1":default_health}
+
+    def get_default_health(self):
+        return 40
 
     def get_agent_ids(self):
         return self._agent_ids

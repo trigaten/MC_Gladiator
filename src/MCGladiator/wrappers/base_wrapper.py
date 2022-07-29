@@ -25,8 +25,9 @@ class BaseWrapper(gym.Wrapper):
         # commands to be executed at the reset of the env
         self.reset_commands = [
             "/give @a minecraft:iron_sword 1 0 {Unbreakable:1}",
-            "/tp MineRLAgent0 0 5 -2",
-            "/tp MineRLAgent1 0 5 2 180 0",
+            "/tp MineRLAgent0 -2 5 0 270 0",
+            "/tp MineRLAgent1 2 5 0 90 0",
+            "/difficulty hard"
         ]
 
         self._agent_ids = {"agent_0", "agent_1"}
@@ -80,10 +81,14 @@ class BaseWrapper(gym.Wrapper):
 
         # 3. step the env
         obs, _, done, info = self.env.step(dual_action)
+
+        # if info:
+        #     print(info)
         
         # 4. compute rewards
         a0_new_health = obs["agent_0"]["life_stats"]["life"]
         a1_new_health = obs["agent_1"]["life_stats"]["life"]
+        print(obs["agent_0"]["life_stats"]["life"])
         rewards = self.compute_rewards(a0_new_health = a0_new_health, a1_new_health = a1_new_health)
         
         # 5. check for doneness of environment
@@ -109,7 +114,7 @@ class BaseWrapper(gym.Wrapper):
         obs = self.env.reset()
         
         # 3. start agents in correct positions, with swords
-        for mc_command in self.mc_reset_commands:
+        for mc_command in self.reset_commands:
             # put action into dict space formatting
             action = self.get_noop()
             action["agent_0"]["chat"] = mc_command

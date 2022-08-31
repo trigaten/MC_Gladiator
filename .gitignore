@@ -1,6 +1,6 @@
 __pycache__
 logs
 .vscode
-ray_config.cfg
+*.cfg
 *.egg*
 build/

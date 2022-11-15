@@ -18,6 +18,9 @@ jobs:
       
       - name: Build
         run: sphinx-build -b dirhtml -v docs/source build
+      
+      - name: Pranav was here!
+        run: echo "pranav was here 🤪"
 
       - name: Upload to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

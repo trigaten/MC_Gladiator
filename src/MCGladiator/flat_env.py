@@ -7,6 +7,17 @@ import logging
 coloredlogs.install(logging.DEBUG)
 
 class HumanSurvivalMultiplayer(HumanSurvival):
+    """
+
+    Example Usage
+
+    .. code-block:: python
+
+        env = HumanSurvivalMultiplayer("127.0.0.1:25565", "human").make()
+
+
+    Credit: Anssi
+    """
     def __init__(self, server_ip, player_name, *args, **kwargs):
         self.server_ip = server_ip
         self.player_name = player_name
@@ -33,20 +44,3 @@ class HumanSurvivalMultiplayer(HumanSurvival):
 
     def create_monitors(self):
         return []
-
-env = HumanSurvivalMultiplayer("127.0.0.1:25565", "hi2").make()
-
-
-print(env.reset())
-
-done = False
-
-while not done:
-    # Take a random action
-    action = env.action_space.sample()
-    # In BASALT environments, sending ESC action will end the episode
-    # Lets not do that
-    action["ESC"] = 0
-    obs, reward, done, _ = env.step({"camera":[1,1], "jump":1,"forward":1})
-    env.render()
-    print(obs["life_stats"])

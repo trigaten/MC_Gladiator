@@ -8,3 +8,4 @@ pyglet
 pytest
 sphinx_rtd_theme
 sphinx
+mcrcon

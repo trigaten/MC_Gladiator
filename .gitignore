@@ -4,3 +4,13 @@ logs
 *.cfg
 *.egg*
 build/
+banned-ips.json
+banned-players.json
+eula.txt
+libraries
+ops.json
+server.jar
+usercache.json
+versions
+whitelist.json
+world

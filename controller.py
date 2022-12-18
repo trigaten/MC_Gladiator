@@ -6,6 +6,7 @@ from minerl.herobraine.hero.handler import Handler
 import minerl.herobraine.hero.handlers as handlers
 import coloredlogs
 import logging
+import time
 # coloredlogs.install(logging.DEBUG)
 from minerl.human_play_interface.human_play_interface import HumanPlayInterface
 import subprocess
@@ -25,6 +26,7 @@ bot_env.reset()
 
 server.execute("/tp human -2 4 0 270 0")
 server.execute("/tp ai 2 4 0 90 0")
+time.sleep(2)
 server.execute("fill -3 3 -3 3 7 3 gold_block outline")
 server.execute("fill -3 7 -3 3 7 3 air outline")
 done = False

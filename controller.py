@@ -6,24 +6,34 @@ from minerl.herobraine.hero.handler import Handler
 import minerl.herobraine.hero.handlers as handlers
 import coloredlogs
 import logging
-coloredlogs.install(logging.DEBUG)
+# coloredlogs.install(logging.DEBUG)
 from minerl.human_play_interface.human_play_interface import HumanPlayInterface
-
+import subprocess
 from src.MCGladiator.flat_env import HumanSurvivalMultiplayer
 
 # spin up minecraft server
 
 
-server = Server("mc_fifo")
+server = Server("mc")
+human_env = HumanSurvivalMultiplayer("127.0.0.1:25565", "human").make()
+human_env = HumanPlayInterface(human_env)
 
-env = HumanSurvivalMultiplayer("127.0.0.1:25565", "human").make()
+bot_env = HumanSurvivalMultiplayer("127.0.0.1:25565", "ai").make()
 
-env = HumanPlayInterface(env)
-print(env.reset())
+human_env.reset()
+bot_env.reset()
 
+server.execute("/tp human -2 4 0 270 0")
+server.execute("/tp ai 2 4 0 90 0")
+server.execute("fill -3 3 -3 3 7 3 gold_block outline")
+server.execute("fill -3 7 -3 3 7 3 air outline")
 done = False
 
 while not done:
-    obs, reward, done, _ = env.step()
-    print(obs["life_stats"])
-    server.execute("/give @a diamond")
+    human_obs, reward, done, _ = human_env.step()
+    obs, reward, done, _ = bot_env.step({"camera":[1,1], "jump":1,"forward":1})
+
+    # if human_obs["life_stats"]['life'] <= 7:
+    #     server.execute("tp human ~ 100 ~")
+
+    print(human_obs["life_stats"])

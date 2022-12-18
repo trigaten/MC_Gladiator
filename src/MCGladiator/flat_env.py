@@ -2,9 +2,7 @@ from minerl.herobraine.env_specs.human_survival_specs import HumanSurvival
 from typing import List
 from minerl.herobraine.hero.handler import Handler
 import minerl.herobraine.hero.handlers as handlers
-import coloredlogs
-import logging
-coloredlogs.install(logging.DEBUG)
+
 
 class HumanSurvivalMultiplayer(HumanSurvival):
     """

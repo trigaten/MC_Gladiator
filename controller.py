@@ -26,7 +26,7 @@ bot_env.reset()
 
 server.execute("tp human -2 4 0 270 0")
 server.execute("tp ai 2 4 0 90 0")
-server.execute("gamerule doNaturalRegen false")
+server.execute("gamerule naturalRegeneration false")
 server.execute("give @a minecraft:iron_sword 1")
 time.sleep(2)
 server.execute("fill -3 3 -3 3 7 3 gold_block outline")

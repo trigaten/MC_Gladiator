@@ -11,7 +11,8 @@ import time
 from minerl.human_play_interface.human_play_interface import HumanPlayInterface
 import subprocess
 from src.MCGladiator.flat_env import HumanSurvivalMultiplayer
-
+import os
+import pickle
 # spin up minecraft server
 
 
@@ -23,23 +24,44 @@ bot_env = HumanSurvivalMultiplayer("127.0.0.1:25565", "ai").make()
 
 human_env.reset()
 bot_env.reset()
+import json
 
-server.execute("tp human -2 4 0 270 0")
-server.execute("tp ai 2 4 0 90 0")
-server.execute("gamerule naturalRegeneration false")
-server.execute("give @a minecraft:iron_sword 1")
-time.sleep(2)
-server.execute("fill -3 3 -3 3 7 3 gold_block outline")
-server.execute("fill -3 7 -3 3 7 3 air outline")
-server.execute("effect give @a instant_health 1 50")
+def reset():
+    server.execute("clear @a")
+    server.execute("tp human -2.5 5 0.5 270 0")
+    server.execute("tp ai 3.5 5 0.5 90 0")
+    server.execute("gamerule naturalRegeneration false")
+    server.execute("give @a minecraft:iron_sword 1")
+    server.execute("effect give @a instant_health 1 200")
+    server.execute("effect give @a saturation 1 255")
+    time.sleep(0.1)
+
 done = False
+reset()
+server.execute("fill -4 3 -4 4 7 4 gold_block outline")
+server.execute("fill -4 7 -4 4 7 4 air outline")
+server.execute("effect give @a instant_health 1 50")
 
-while not done:
-    human_obs, reward, done, _ = human_env.step()
-    obs, reward, done, _ = bot_env.step({"camera":[1,1], "jump":1,"forward":1})
+for i in range(100):
+    if not os.path.exists("episodes/" + str(i)):
+        os.mkdir("episodes/" + str(i))
+                
+    with open("episodes/" + str(i) + '/human_obs', 'ab') as human_obs_file: 
+        with open("episodes/" + str(i) + "/ai_obs", 'ab') as ai_obs_file:        
+            with open("episodes/" + str(i) + "/stats.json", "a") as stats:
+                reset()
+                print("RESET")
+                done = False
+                while not done:
+                    human_obs, h_reward, h_done, _ = human_env.step()
+                    b_obs, b_reward, b_done, _ = bot_env.step({"camera":[1,1], "jump":1,"forward":1})
 
-    if human_obs["life_stats"]['life'] <= 10:
-        server.execute("/tp human -2 4 0 270 0")
-        server.execute("/tp ai 2 4 0 90 0")
-
-    print(human_obs["life_stats"])
+                    if human_obs["life_stats"]['life'] <= 10 or b_obs["life_stats"]["life"] <= 10:
+                        done = True
+                    print("----")
+                    print(type(human_obs["life_stats"]['life']))
+                    print(b_obs["life_stats"]['life'])
+                    print(b_obs["pov"])
+                    pickle.dump(b_obs["pov"], ai_obs_file)
+                    pickle.dump(human_obs["pov"], human_obs_file)
+                    stats.write(json.dumps({"human": {"life": human_obs["life_stats"]['life'].item()}, "ai": {"life": b_obs["life_stats"]['life'].item()}}))

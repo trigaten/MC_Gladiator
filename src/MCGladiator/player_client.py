@@ -25,7 +25,9 @@ class HumanSurvivalMultiplayer(HumanSurvival):
 
     def create_observables(self) -> List[Handler]:
         # To make this bit faster (full obs stuff is slow)
-        return [handlers.POVObservation(self.resolution), handlers.ObservationFromLifeStats()]
+        return [handlers.POVObservation(self.resolution), 
+        handlers.ObservationFromLifeStats(),
+        handlers.ObservationFromCurrentLocation()]
 
 
     def create_server_initial_conditions(self) -> List[Handler]:

@@ -58,10 +58,11 @@ for i in range(100):
 
                     if human_obs["life_stats"]['life'] <= 10 or b_obs["life_stats"]["life"] <= 10:
                         done = True
-                    print("----")
-                    print(type(human_obs["life_stats"]['life']))
-                    print(b_obs["life_stats"]['life'])
-                    print(b_obs["pov"])
+                    # print("----")
+                    # print(type(human_obs["life_stats"]['life']))
+                    # print(b_obs["life_stats"]['life'])
+                    # print(b_obs["pov"])
+                    print(b_obs["location_stats"])
                     pickle.dump(b_obs["pov"], ai_obs_file)
                     pickle.dump(human_obs["pov"], human_obs_file)
                     if not done:

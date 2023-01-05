@@ -39,7 +39,6 @@ done = False
 reset()
 server.execute("fill -4 3 -4 4 7 4 gold_block outline")
 server.execute("fill -4 7 -4 4 7 4 air outline")
-server.execute("effect give @a instant_health 1 50")
 
 for i in range(100):
     if not os.path.exists("episodes/" + str(i)):

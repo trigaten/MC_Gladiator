@@ -13,8 +13,7 @@ import subprocess
 from src.MCGladiator.flat_env import HumanSurvivalMultiplayer
 import os
 import pickle
-# spin up minecraft server
-
+import random
 
 server = Server("mc")
 human_env = HumanSurvivalMultiplayer("127.0.0.1:25565", "human").make()
@@ -49,12 +48,14 @@ for i in range(100):
     with open("episodes/" + str(i) + '/human_obs', 'ab') as human_obs_file: 
         with open("episodes/" + str(i) + "/ai_obs", 'ab') as ai_obs_file:        
             with open("episodes/" + str(i) + "/stats.json", "a") as stats:
+                stats.write("[")
                 reset()
                 print("RESET")
                 done = False
+                step = 0
                 while not done:
-                    human_obs, h_reward, h_done, _ = human_env.step()
-                    b_obs, b_reward, b_done, _ = bot_env.step({"camera":[1,1], "jump":1,"forward":1})
+                    human_obs, h_reward, h_done, human_info = human_env.step()
+                    b_obs, b_reward, b_done, _ = bot_env.step({"camera":[10*random.random()-5,10*random.random()-5], "jump": 1 if random.random()>0.5 else 0,"forward":1})
 
                     if human_obs["life_stats"]['life'] <= 10 or b_obs["life_stats"]["life"] <= 10:
                         done = True
@@ -64,4 +65,11 @@ for i in range(100):
                     print(b_obs["pov"])
                     pickle.dump(b_obs["pov"], ai_obs_file)
                     pickle.dump(human_obs["pov"], human_obs_file)
-                    stats.write(json.dumps({"human": {"life": human_obs["life_stats"]['life'].item()}, "ai": {"life": b_obs["life_stats"]['life'].item()}}))
+                    if not done:
+                        ap = ","
+                    else:
+                        ap = ""
+                    stats.write(json.dumps({step:{"human": {"life": human_obs["life_stats"]['life'].item(), "action":human_info["taken_action"]}, "ai": {"life": b_obs["life_stats"]['life'].item()}}}) + ap)
+                    step+=1
+
+                stats.write("]")

@@ -74,7 +74,7 @@ class GladiatorEnv:
 
         multi_obs = self.deal_with_locations(multi_obs)
 
-        return multi_obs
+        return multi_obs, {}
 
     def step(self, actions:Dict, render:bool=False):
         multi_obs = {}
@@ -98,7 +98,8 @@ class GladiatorEnv:
         multi_rewards, multi_dones = self.deal_with_rewards(multi_obs, multi_dones, multi_rewards)
 
         done = True in multi_dones.values()
-        return multi_obs, multi_rewards, done, multi_infos
+        # TODO: deal with terminated/truncated
+        return multi_obs, multi_rewards, done, done, multi_infos
 
     def deal_with_locations(self, multi_obs):
         agent_names = list(self.clients.keys())

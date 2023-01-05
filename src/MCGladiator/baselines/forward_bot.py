@@ -2,9 +2,10 @@ import math
 
 ANGLE = 10
 
-class KillBot:
+class ForwardBot:
     def __init__(self, name) -> None:
         self.name = name
+        self.attack_cooldown=0
 
     def __call__(self, obs):
 
@@ -15,4 +16,12 @@ class KillBot:
 
         distance = math.sqrt(dx**2 + dz**2)
 
-        return {"camera":[0, position_angle - yaw]}
+        if distance > 2:
+            return {"forward":1}
+        else:
+            if self.attack_cooldown == 0:
+                self.attack_cooldown = 10
+                return {"attack":1}
+            else:
+                self.attack_cooldown -= 1
+                return {}

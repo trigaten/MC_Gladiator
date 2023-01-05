@@ -10,23 +10,27 @@ class KillBot:
 
         enemy_x, _, enemy_z = obs["enemy_loc"]
 
-        dx = enemy_x - obs['location_stats']["xpos"]
-        dz = enemy_z - obs['location_stats']["zpos"]
+        return self.compute_rotation((obs['location_stats']["xpos"], obs['location_stats']["zpos"]), (enemy_x, enemy_z), obs['location_stats']["yaw"])
+
+
+    def compute_rotation(self, pos, enemy_pos, yaw):
+        dx = enemy_pos[0] - pos[0]
+        dz = enemy_pos[1] - pos[1]
 
         # in -180 to 180
         position_angle = (math.degrees(math.atan2((dz), (dx)))) 
-        # in -360 to 360
-        yaw = obs['location_stats']["yaw"] % 360
-
-        if abs(yaw) > 180:
-            if yaw > 0:
-                yaw -= 360
+        # turn yaw into -180 to 180
+        restricted_yaw = yaw % 360
+        if abs(restricted_yaw) > 180:
+            if restricted_yaw > 0:
+                restricted_yaw -= 360
             else:
-                yaw += 360
+                restricted_yaw += 360
 
-        print(position_angle, yaw)
-        if position_angle < -90:
-        diff = yaw + 90 - position_angle
+        # if position_angle < -90:
+        #     position_angle = -position_angle
+
+        diff = restricted_yaw + 90 - position_angle
 
         if abs(diff) > ANGLE:
             if diff > 0:
@@ -35,7 +39,5 @@ class KillBot:
                 action = {"camera":[0, ANGLE]}
         else:
             action = {"camera":[0, 0]}
-        print(action)
-        return action
 
-    def compute_rotation(self, )
+        return action

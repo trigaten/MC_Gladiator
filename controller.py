@@ -10,7 +10,7 @@ import time
 # coloredlogs.install(logging.DEBUG)
 from minerl.human_play_interface.human_play_interface import HumanPlayInterface
 import subprocess
-from src.MCGladiator.flat_env import HumanSurvivalMultiplayer
+from src.MCGladiator.player_client import HumanSurvivalMultiplayer
 import os
 import pickle
 import random
@@ -62,7 +62,7 @@ for i in range(100):
                     # print(type(human_obs["life_stats"]['life']))
                     # print(b_obs["life_stats"]['life'])
                     # print(b_obs["pov"])
-                    print(b_obs["location_stats"])
+                    print(human_obs["location_stats"])
                     pickle.dump(b_obs["pov"], ai_obs_file)
                     pickle.dump(human_obs["pov"], human_obs_file)
                     if not done:
@@ -71,5 +71,6 @@ for i in range(100):
                         ap = ""
                     stats.write(json.dumps({step:{"human": {"life": human_obs["life_stats"]['life'].item(), "action":human_info["taken_action"]}, "ai": {"life": b_obs["life_stats"]['life'].item()}}}) + ap)
                     step+=1
+
 
                 stats.write("]")

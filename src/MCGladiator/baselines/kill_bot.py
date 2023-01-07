@@ -1,6 +1,6 @@
 import math
 
-ANGLE = 10
+ANGLE = 1
 
 class KillBot:
     def __init__(self, name) -> None:
@@ -16,9 +16,12 @@ class KillBot:
     def compute_rotation(self, pos, enemy_pos, yaw):
         dx = enemy_pos[0] - pos[0]
         dz = enemy_pos[1] - pos[1]
-
+        
+        
         # in -180 to 180
         position_angle = (math.degrees(math.atan2((dz), (dx)))) 
+
+        yaw+=90
         # turn yaw into -180 to 180
         restricted_yaw = yaw % 360
         if abs(restricted_yaw) > 180:
@@ -27,13 +30,16 @@ class KillBot:
             else:
                 restricted_yaw += 360
 
-        # if position_angle < -90:
-        #     position_angle = -position_angle
+        diff = position_angle - restricted_yaw
 
-        diff = restricted_yaw + 90 - position_angle
-
-        if abs(diff) > ANGLE:
+        if abs(diff) > 180:
             if diff > 0:
+                diff -= 360
+            else:
+                diff += 360
+        print("DIFF", diff)
+        if abs(diff) > ANGLE:
+            if diff < 0:
                 action = {"camera":[0, -ANGLE]}
             else:
                 action = {"camera":[0, ANGLE]}

@@ -1,8 +1,12 @@
 import math
 
-ANGLE = 1
+ANGLE = 7
 
 class KillBot:
+    """
+    
+    Credit Adeev Wohl for fixing logic
+    """
     def __init__(self, name) -> None:
         self.name = name
 

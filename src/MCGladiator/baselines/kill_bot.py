@@ -9,6 +9,7 @@ class KillBot:
     """
     def __init__(self, name) -> None:
         self.name = name
+        self.attack_cooldown=0
 
     def __call__(self, obs):
 
@@ -41,13 +42,21 @@ class KillBot:
                 diff -= 360
             else:
                 diff += 360
-        print("DIFF", diff)
+
         if abs(diff) > ANGLE:
             if diff < 0:
                 action = {"camera":[0, -ANGLE]}
             else:
                 action = {"camera":[0, ANGLE]}
         else:
-            action = {"camera":[0, 0]}
+            if math.sqrt(dx**2 + dz**2) > 2:
+                action = {"forward":1}
+            else:
+                if self.attack_cooldown == 0:
+                    self.attack_cooldown = 10
+                    action = {"attack":1}
+                else:
+                    self.attack_cooldown -= 1
+                    action = {"camera":[0,0]}
 
         return action
